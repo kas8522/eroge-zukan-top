@@ -50,9 +50,8 @@ function CTAExternalLink({
   href?: string;
   isPrimary?: boolean;
 }) {
-  const canOpen = typeof href === "string" && /^https?:\/\//.test(href);
-
-  if (!canOpen) {
+  // "未設定のときだけ準備中" にする（形式チェックはしない）
+  if (!href) {
     return (
       <CTAButton
         label={label}
@@ -66,7 +65,7 @@ function CTAExternalLink({
     <a
       href={href}
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer sponsored"
       className={`btn-press w-full py-3 rounded-lg font-bold transition-all text-center ${
         isPrimary ? "text-white hover:opacity-90" : "border hover:bg-pink-50"
       }`}
