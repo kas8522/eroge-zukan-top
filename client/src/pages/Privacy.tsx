@@ -24,7 +24,7 @@ export default function Privacy() {
             <section>
               <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">個人情報の利用目的</h2>
               <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                当サイトでは、ユーザーの個人情報を適切に保護し、法令を遵守します。取得した個人情報は、お問い合わせへのご返信、サービス改善、統計情報の作成などの目的でのみ使用します。
+                当サイトでは、ユーザーの個人情報を適切に管理し、必要に応じて安全対策を講じるよう努めます。取得した個人情報は、お問い合わせへのご返信、サービス改善、統計情報の作成などの目的で利用する場合があります。
               </p>
             </section>
 
@@ -44,6 +44,14 @@ export default function Privacy() {
               </p>
             </section>
 
+            {/* 広告配信について */}
+            <section>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">広告配信について</h2>
+              <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                当サイトでは、第三者配信の広告サービスを利用する場合があります。広告配信事業者がCookie等を利用して、ユーザーの興味関心に応じた広告を表示することがあります。
+              </p>
+            </section>
+
             {/* Cookieについて */}
             <section>
               <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Cookieについて</h2>
@@ -56,7 +64,15 @@ export default function Privacy() {
             <section>
               <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">広告配信・アフィリエイトについて</h2>
               <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                当サイトは、Amazon、FANZA、DLsite、楽天、A8.net などのアフィリエイトプログラムを利用する場合があります。これらのプログラムでは、個人を特定しない形での情報が収集される場合があります。
+                当サイトはアフィリエイト広告を利用しています。また、Amazon、FANZA、DLsite、楽天、A8.net などのアフィリエイトプログラムを利用する場合があります。これらのプログラムでは、個人を特定しない形での情報が収集される場合があります。
+              </p>
+            </section>
+
+            {/* 第三者提供について */}
+            <section>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">第三者提供について</h2>
+              <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                当サイトは、法令等により開示が求められる場合などを除き、本人の同意なく個人情報を第三者に提供しないよう努めます。
               </p>
             </section>
 

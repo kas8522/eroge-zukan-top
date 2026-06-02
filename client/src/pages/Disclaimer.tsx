@@ -52,6 +52,14 @@ export default function Disclaimer() {
               </p>
             </section>
 
+            {/* 購入・利用判断について */}
+            <section>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">購入・利用判断について</h2>
+              <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                当サイトの情報は参考情報です。作品・サービスの購入や利用の最終判断は、利用者ご自身の責任でお願いいたします。
+              </p>
+            </section>
+
             {/* アフィリエイト広告について */}
             <section>
               <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">アフィリエイト広告について</h2>
@@ -71,6 +79,18 @@ export default function Disclaimer() {
               </p>
               <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                 当サイトに掲載されている作品の一部は、成人向けのコンテンツです。18歳未満の方が閲覧することは法律で禁止されています。ご注意ください。
+              </p>
+            </section>
+
+            {/* 権利侵害・掲載内容に関するご連絡 */}
+            <section>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">権利侵害・掲載内容に関するご連絡</h2>
+              <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                掲載内容に問題がある場合（権利侵害の可能性、表現の不備、誤情報など）は、
+                <Link href="/contact" className="text-pink-600 hover:text-pink-700 font-medium">
+                  お問い合わせページ
+                </Link>
+                からご連絡ください。確認のうえ、必要に応じて対応いたします。
               </p>
             </section>
 
