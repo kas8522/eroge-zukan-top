@@ -6,6 +6,14 @@ import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 
 type RankingTab = "総合" | "急上昇" | "新作" | "セール中" | "同人ゲーム" | "Live2D";
 
+// Tailwindの line-clamp が効かない場合でも高さを揃えるための2行クランプ
+const lineClamp2Style = {
+  display: "-webkit-box",
+  WebkitBoxOrient: "vertical",
+  WebkitLineClamp: 2,
+  overflow: "hidden",
+} as any;
+
 function StarRating({ value }: { value: number }) {
   const full = Math.floor(value);
   const half = value - full >= 0.3;
@@ -33,32 +41,32 @@ function RankingCard({ item }: { item: typeof rankingItems[0] }) {
     <Link href={`/game/${item.id}`}>
       <a className="game-card bg-white rounded-xl border overflow-hidden hover:shadow-md transition-shadow" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
         {/* PC版: 横並び */}
-        <div className="hidden sm:flex gap-4 p-4">
+        <div className="hidden sm:flex gap-3 p-3">
           {/* 順位バッジ */}
-          <div className="shrink-0 flex flex-col items-center justify-center w-12 h-12 rounded-lg font-bold text-lg" style={{ backgroundColor: "oklch(0.95 0.02 355)", color: "oklch(0.18 0.03 310)" }}>
+          <div className="shrink-0 flex flex-col items-center justify-center w-12 h-12 rounded-lg font-bold text-lg leading-none" style={{ backgroundColor: "oklch(0.95 0.02 355)", color: "oklch(0.18 0.03 310)" }}>
             {item.rank}
           </div>
 
           {/* サムネイル */}
-          <div className="shrink-0 w-20 h-28 rounded-lg overflow-hidden">
+          <div className="shrink-0 w-16 h-24 rounded-lg overflow-hidden">
             <img src={item.thumbnail} alt={item.title} className="w-full h-full object-cover" />
           </div>
 
           {/* 情報 */}
           <div className="flex-1 min-w-0 flex flex-col justify-between">
             <div>
-              <p className="text-sm font-bold line-clamp-2 mb-1" style={{ color: "oklch(0.18 0.03 310)" }}>
+              <p className="text-sm font-bold mb-1" style={{ color: "oklch(0.18 0.03 310)", ...lineClamp2Style }}>
                 {item.title}
               </p>
               <p className="text-xs mb-2" style={{ color: "oklch(0.52 0.04 310)" }}>{item.maker}</p>
               <div className="flex flex-wrap gap-1 mb-2">
                 {item.tags.slice(0, 3).map((tag) => (
-                  <span key={tag} className="text-[10px] px-2 py-0.5 rounded-full" style={{ backgroundColor: "oklch(0.95 0.02 355)", color: "oklch(0.18 0.03 310)" }}>
+                  <span key={tag} className="text-[10px] px-2 py-0.5 rounded-full whitespace-nowrap" style={{ backgroundColor: "oklch(0.95 0.02 355)", color: "oklch(0.18 0.03 310)" }}>
                     {tag}
                   </span>
                 ))}
               </div>
-              <p className="text-xs line-clamp-2 mb-2" style={{ color: "oklch(0.42 0.04 310)" }}>
+              <p className="text-xs mb-2" style={{ color: "oklch(0.42 0.04 310)", ...lineClamp2Style }}>
                 {item.comment}
               </p>
             </div>
@@ -76,14 +84,14 @@ function RankingCard({ item }: { item: typeof rankingItems[0] }) {
                   {item.views}
                 </div>
               </div>
-              <div className="text-sm font-bold" style={{ color: "oklch(0.62 0.22 355)" }}>
+              <div className="text-sm font-bold text-right whitespace-nowrap min-w-[68px] flex-shrink-0" style={{ color: "oklch(0.62 0.22 355)" }}>
                 {item.price}
               </div>
             </div>
           </div>
 
           {/* 詳細ボタン */}
-          <div className="shrink-0 flex items-center justify-center">
+          <div className="shrink-0 w-8 flex items-center justify-center">
             <ChevronRight className="w-5 h-5" style={{ color: "oklch(0.62 0.22 355)" }} />
           </div>
         </div>
@@ -92,7 +100,7 @@ function RankingCard({ item }: { item: typeof rankingItems[0] }) {
         <div className="sm:hidden flex flex-col gap-3 p-4">
           {/* 順位バッジ + サムネイル */}
           <div className="flex gap-3">
-            <div className="shrink-0 flex flex-col items-center justify-center w-10 h-10 rounded-lg font-bold text-base" style={{ backgroundColor: "oklch(0.95 0.02 355)", color: "oklch(0.18 0.03 310)" }}>
+            <div className="shrink-0 flex flex-col items-center justify-center w-10 h-10 rounded-lg font-bold text-base leading-none" style={{ backgroundColor: "oklch(0.95 0.02 355)", color: "oklch(0.18 0.03 310)" }}>
               {item.rank}
             </div>
             <div className="shrink-0 w-16 h-24 rounded-lg overflow-hidden">
@@ -100,7 +108,7 @@ function RankingCard({ item }: { item: typeof rankingItems[0] }) {
             </div>
             <div className="flex-1 min-w-0 flex flex-col justify-between">
               <div>
-                <p className="text-xs font-bold line-clamp-2 mb-0.5" style={{ color: "oklch(0.18 0.03 310)" }}>
+                <p className="text-xs font-bold mb-0.5" style={{ color: "oklch(0.18 0.03 310)", ...lineClamp2Style }}>
                   {item.title}
                 </p>
                 <p className="text-[10px] mb-1" style={{ color: "oklch(0.52 0.04 310)" }}>{item.maker}</p>
@@ -124,7 +132,7 @@ function RankingCard({ item }: { item: typeof rankingItems[0] }) {
           </div>
 
           {/* コメント */}
-          <p className="text-xs line-clamp-2" style={{ color: "oklch(0.42 0.04 310)" }}>
+          <p className="text-xs" style={{ color: "oklch(0.42 0.04 310)", ...lineClamp2Style }}>
             {item.comment}
           </p>
 
@@ -134,7 +142,7 @@ function RankingCard({ item }: { item: typeof rankingItems[0] }) {
           </div>
 
           {/* 価格 */}
-          <div className="text-base font-bold" style={{ color: "oklch(0.62 0.22 355)" }}>
+          <div className="text-base font-bold whitespace-nowrap" style={{ color: "oklch(0.62 0.22 355)" }}>
             {item.price}
           </div>
         </div>
@@ -147,21 +155,21 @@ function RankingCard({ item }: { item: typeof rankingItems[0] }) {
 function RankOneCard({ item }: { item: typeof rankingItems[0] }) {
   return (
     <Link href={`/game/${item.id}`}>
-      <a className="game-card bg-white rounded-xl border overflow-hidden hover:shadow-lg transition-shadow" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
+      <a className="game-card bg-white rounded-xl border overflow-hidden hover:shadow-lg transition-shadow relative" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
         {/* PC版：王冠バッジ */}
         <div className="hidden sm:flex absolute top-3 left-3 z-10 items-center gap-1 px-3 py-1 rounded-full font-bold text-sm" style={{ backgroundColor: "oklch(0.62 0.22 355)", color: "white" }}>
           <Crown className="w-4 h-4" fill="currentColor" />
-          今週の1位
+          1位
         </div>
 
         {/* サムネイル */}
-        <div className="relative overflow-hidden bg-gray-100" style={{ paddingTop: "56.25%", maxHeight: "200px" }}>
+        <div className="relative overflow-hidden bg-gray-100" style={{ paddingTop: "56.25%", maxHeight: "180px" }}>
           <img src={item.thumbnail} alt={item.title} className="absolute inset-0 w-full h-full object-cover object-center" />
         </div>
 
         {/* 情報 */}
         <div className="p-4">
-          <p className="text-sm font-bold line-clamp-2 mb-1" style={{ color: "oklch(0.18 0.03 310)" }}>
+          <p className="text-sm font-bold mb-1" style={{ color: "oklch(0.18 0.03 310)", ...lineClamp2Style }}>
             {item.title}
           </p>
           <p className="text-xs mb-2" style={{ color: "oklch(0.52 0.04 310)" }}>{item.maker}</p>
@@ -174,13 +182,13 @@ function RankOneCard({ item }: { item: typeof rankingItems[0] }) {
             ))}
           </div>
 
-          <p className="text-xs line-clamp-2 mb-2" style={{ color: "oklch(0.42 0.04 310)" }}>
+          <p className="text-xs mb-2" style={{ color: "oklch(0.42 0.04 310)", ...lineClamp2Style }}>
             {item.comment}
           </p>
 
           <div className="flex items-center justify-between mb-2">
             <StarRating value={item.rating} />
-            <div className="text-sm font-bold" style={{ color: "oklch(0.62 0.22 355)" }}>
+            <div className="text-sm font-bold whitespace-nowrap min-w-[68px] text-right flex-shrink-0" style={{ color: "oklch(0.62 0.22 355)" }}>
               {item.price}
             </div>
           </div>
@@ -278,9 +286,9 @@ export default function Ranking() {
       <div className="container py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* 左：ランキング一覧 */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="lg:col-span-2 space-y-3">
             {/* 1位 */}
-            <div className="mb-6">
+            <div className="mb-4">
               <RankOneCard item={firstItem} />
             </div>
 
