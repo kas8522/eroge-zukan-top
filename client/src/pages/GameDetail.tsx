@@ -143,6 +143,9 @@ export default function GameDetail() {
     return detail || gameDetails[0];
   }, [gameId]);
 
+  const mainImage = gameDetail.imageUrl ?? gameDetail.mainImage;
+  const galleryImages = gameDetail.galleryImages ?? gameDetail.sampleImages;
+
   // ページ遷移時にスクロール位置をリセット
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -169,13 +172,13 @@ export default function GameDetail() {
             {/* 左: メイン画像 */}
             <div>
               <div className="rounded-2xl overflow-hidden bg-gray-100 mb-4 relative" style={{ paddingTop: "56.25%", maxHeight: "400px" }}>
-                <img src={gameDetail.mainImage} alt={gameDetail.title} className="absolute inset-0 w-full h-full object-cover object-center" loading="lazy" />
+                <img src={mainImage} alt={gameDetail.title} className="absolute inset-0 w-full h-full object-cover object-center" loading="lazy" />
               </div>
               {/* サンプル画像ギャラリー */}
               <div>
                 <h3 className="text-sm font-bold mb-3" style={{ color: "oklch(0.18 0.03 310)" }}>サンプル画像</h3>
                 <div className="grid grid-cols-3 gap-2">
-                  {gameDetail.sampleImages.map((img, i) => (
+                  {galleryImages.map((img, i) => (
                     <div key={i} className="relative rounded-lg overflow-hidden bg-gray-100 cursor-pointer hover:opacity-80 transition-opacity"
                       style={{ paddingTop: "75%" }}>
                       <img src={img} alt={`Sample ${i + 1}`} className="absolute inset-0 w-full h-full object-cover object-center" loading="lazy" />
@@ -192,9 +195,15 @@ export default function GameDetail() {
                 <h1 className="text-2xl font-bold mb-3" style={{ color: "oklch(0.18 0.03 310)" }}>
                   {gameDetail.title}
                 </h1>
-                <p className="text-sm mb-3" style={{ color: "oklch(0.55 0.04 310)" }}>
-                  {gameDetail.maker}
+                <p className="text-sm mb-1" style={{ color: "oklch(0.55 0.04 310)" }}>
+                  メーカー: {gameDetail.maker}
                 </p>
+                {gameDetail.brand && (
+                  <p className="text-xs mb-3" style={{ color: "oklch(0.55 0.04 310)" }}>
+                    ブランド: {gameDetail.brand}
+                  </p>
+                )}
+                {!gameDetail.brand && <div className="mb-3" />}
                 <div className="flex items-center justify-between text-sm mb-4 pb-4 border-b" style={{ color: "oklch(0.55 0.04 310)", borderColor: "oklch(0.92 0.02 355)" }}>
                   <span>発売日: {gameDetail.releaseDate}</span>
                   <span className="font-bold text-lg" style={{ color: "oklch(0.62 0.22 355)" }}>¥{gameDetail.price.toLocaleString()}</span>
@@ -291,7 +300,7 @@ export default function GameDetail() {
 
             {/* メイン画像 */}
             <div className="relative rounded-xl overflow-hidden bg-gray-100 w-full" style={{ maxHeight: "320px", aspectRatio: "16 / 9" }}>
-              <img src={gameDetail.mainImage} alt={gameDetail.title} className="w-full h-full object-cover object-center" loading="lazy" />
+              <img src={mainImage} alt={gameDetail.title} className="w-full h-full object-cover object-center" loading="lazy" />
             </div>
 
             {/* タイトル・メーカー・発売日・価格 */}
@@ -299,9 +308,14 @@ export default function GameDetail() {
               <h1 className="text-lg font-bold mb-2" style={{ color: "oklch(0.18 0.03 310)" }}>
                 {gameDetail.title}
               </h1>
-              <p className="text-xs mb-2" style={{ color: "oklch(0.55 0.04 310)" }}>
-                {gameDetail.maker}
+              <p className="text-xs mb-1" style={{ color: "oklch(0.55 0.04 310)" }}>
+                メーカー: {gameDetail.maker}
               </p>
+              {gameDetail.brand && (
+                <p className="text-[10px] mb-2" style={{ color: "oklch(0.55 0.04 310)" }}>
+                  ブランド: {gameDetail.brand}
+                </p>
+              )}
               <div className="flex items-center justify-between text-xs mb-3 pb-3 border-b" style={{ color: "oklch(0.55 0.04 310)", borderColor: "oklch(0.92 0.02 355)" }}>
                 <span>{gameDetail.releaseDate}</span>
                 <span className="font-bold text-base" style={{ color: "oklch(0.62 0.22 355)" }}>
@@ -396,7 +410,7 @@ export default function GameDetail() {
             <div>
               <h3 className="text-xs font-bold mb-2" style={{ color: "oklch(0.18 0.03 310)" }}>サンプル画像</h3>
               <div className="grid grid-cols-2 gap-2">
-                {gameDetail.sampleImages.map((img, i) => (
+                {galleryImages.map((img, i) => (
                   <div key={i} className="relative rounded-lg overflow-hidden bg-gray-100 cursor-pointer hover:opacity-80 transition-opacity"
                     style={{ paddingTop: "75%" }}>
                     <img src={img} alt={`Sample ${i + 1}`} className="absolute inset-0 w-full h-full object-cover object-center" loading="lazy" />

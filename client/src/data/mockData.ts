@@ -76,6 +76,19 @@ export const notices: Notice[] = [
 
 export const adminNote = "今月は注目の新作が多めです！週末にじっくり遊ぶ作品を探している方はぜひランキングもチェックしてみてください。";
 
+/** game id:1（催眠術4 / FANZA next_0264）用プレースホルダー画像 */
+const GAME1_PLACEHOLDER = {
+  imageNote:
+    "※ 掲載画像はイメージ用の仮画像です。実際のパッケージ・キャプチャとは異なります。FANZAアフィリエイト素材で差し替え予定。",
+  thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80",
+  mainImage: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800&q=80",
+  gallery: [
+    "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80",
+    "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=400&q=80",
+    "https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=400&q=80",
+  ],
+} as const;
+
 // 注目の新作
 export interface GameCard {
   id: number;
@@ -92,14 +105,14 @@ export interface GameCard {
 export const newReleases: GameCard[] = [
   {
     id: 1,
-    title: "サクラノ詩 -桜の森の下を歩む-",
-    maker: "HOOKSOFT",
-    thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80",
-    tags: ["甘々", "Live2D"],
-    description: "泣ける、甘い、優しい。すべてが詰まった名作。",
-    label: "本日発売！",
-    labelType: "today",
-    href: "#",
+    title: "催眠術4",
+    maker: "筆柿そふと",
+    thumbnail: GAME1_PLACEHOLDER.thumbnail,
+    tags: ["王道催眠ADV", "ADV"],
+    description: "身近な人間関係が揺らぐ、王道催眠ADV。FANZAで配信中。",
+    label: "人気作",
+    labelType: "pickup",
+    href: "/game/1",
   },
   {
     id: 2,
@@ -188,14 +201,26 @@ export interface GameDetail {
   id: number;
   title: string;
   maker: string;
+  /** ブランド名（サークル名と同一のことが多い） */
+  brand?: string;
   releaseDate: string;
   price: number;
   rating: number;
   ratingCount: number;
   genres: string[];
-  thumbnail: string;
-  mainImage: string;
   description: string;
+  /** 一覧・カード用サムネイル */
+  thumbnail: string;
+  /** メイン画像（imageUrl と同義・後方互換） */
+  mainImage: string;
+  /** メイン画像URL（将来の差し替え用） */
+  imageUrl?: string;
+  /** ギャラリー画像（galleryImages と同義・後方互換） */
+  sampleImages: string[];
+  /** ギャラリー画像URL（将来の差し替え用） */
+  galleryImages?: string[];
+  /** 画像が仮である旨の運用メモ（データ管理用） */
+  imageNote?: string;
   adminReview: string;
   recommendedFor: string[];
   notRecommendedFor: string[];
@@ -205,7 +230,6 @@ export interface GameDetail {
     atmosphere: number;
     value: number;
   };
-  sampleImages: string[];
   relatedWorks: Array<{ id: number; title: string; thumbnail: string; maker: string }>;
   similarGenreWorks: Array<{ id: number; title: string; thumbnail: string; maker: string }>;
   fanzaUrl?: string;
@@ -216,50 +240,54 @@ export interface GameDetail {
 export const gameDetails: GameDetail[] = [
   {
     id: 1,
-    title: "サクラノ詩 -桜の樹の下を歩む-",
-    maker: "HOOKSOFT",
-    releaseDate: "2024/05/31",
-    price: 8800,
-    rating: 4.8,
-    ratingCount: 1256,
-    genres: ["恋愛", "Live2D", "学園"],
-    thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80",
-    mainImage: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800&q=80",
-    description: "春の桜を背景に、主人公とヒロインたちが紡ぐ恋愛物語。Live2Dアニメーションでキャラクターが生き生きと動く。メインシナリオから特典シーンまで、幸せに満ちた二人の時間を描いた作品。",
-    adminReview: "Live2Dの動きが本当に素晴らしい。キャラクターが生き生きしていて、見ているだけで時間が経つのを忘れてしまいます。シナリオも個性的で、推し推しできる作品です。",
+    title: "催眠術4",
+    maker: "筆柿そふと",
+    brand: "筆柿そふと",
+    releaseDate: "2019/03/29",
+    price: 8000,
+    rating: 3.7,
+    ratingCount: 23,
+    genres: ["王道催眠ADV", "ADV", "フルボイス", "姉妹", "幼馴染", "学園"],
+    description:
+      "幼い頃に両親を失い、姉二人と暮らす主人公。幼馴染やクラスメイトと穏やかな日々を送る中、偶然身につけた催眠術が、身近な人間関係のバランスを少しずつ揺らしていく——家庭と学校を舞台にした、王道タイプの催眠ADVです。シリーズ「催眠術」の第4作（FANZA商品ID: next_0264）。",
+    thumbnail: GAME1_PLACEHOLDER.thumbnail,
+    mainImage: GAME1_PLACEHOLDER.mainImage,
+    imageUrl: GAME1_PLACEHOLDER.mainImage,
+    imageNote: GAME1_PLACEHOLDER.imageNote,
+    adminReview:
+      "筆柿そふとらしい、人間関係を丁寧に描く催眠ADVです。姉妹・幼馴染・その家族など、身近なキャラが多く、日常パートの積み上げがしっかりしている印象。FANZAユーザー評価はおおむね良好で、シリーズ入門にもおすすめしやすい一本です。",
     recommendedFor: [
-      "Live2Dアニメーション好きな人",
-      "キャラクターの動きを楽しみたい人",
-      "恋愛ゲーム初心者",
-      "じっくり遊びたい人",
+      "王道催眠ADVが好きな人",
+      "姉妹・幼馴染など身近なヒロインが好きな人",
+      "ストーリー重視でじっくり進めたい人",
+      "催眠術シリーズを順に遊びたい人",
     ],
     notRecommendedFor: [
-      "ストーリーをガッツリ求める人",
-      "短時間でクリアしたい人",
+      "短時間でサクッと終わる作品を求める人",
+      "催眠・背徳系のテーマが苦手な人",
+      "最新作のビジュアル・演出を最優先する人",
     ],
     ratings: {
-      character: 5,
-      animation: 5,
-      atmosphere: 4.5,
-      value: 4.5,
+      character: 4.0,
+      animation: 3.5,
+      atmosphere: 4.0,
+      value: 3.8,
     },
-    sampleImages: [
-      "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80",
-      "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=400&q=80",
-      "https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=400&q=80",
-    ],
+    sampleImages: [...GAME1_PLACEHOLDER.gallery],
+    galleryImages: [...GAME1_PLACEHOLDER.gallery],
     relatedWorks: [
       { id: 2, title: "アマカノ2", thumbnail: "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=200&q=80", maker: "あざらしそふと" },
-      { id: 3, title: "天使・緑々 RE-BOOT!", thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=200&q=80", maker: "ゆずソフト" },
-      { id: 4, title: "恋するココロと魔法のコトバ", thumbnail: "https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=200&q=80", maker: "まどそふと" },
+      { id: 3, title: "天使☆騒々 RE-BOOT!", thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=200&q=80", maker: "ゆずソフト" },
+      { id: 4, title: "恋するコロと魔法のコトバ", thumbnail: "https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=200&q=80", maker: "まどそふと" },
     ],
     similarGenreWorks: [
-      { id: 5, title: "ハミダククリエイティブプラス", thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=200&q=80", maker: "まどそふと" },
+      { id: 5, title: "ハミダシクリエイティブ", thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=200&q=80", maker: "まどそふと" },
       { id: 2, title: "アマカノ2", thumbnail: "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=200&q=80", maker: "あざらしそふと" },
     ],
-    fanzaUrl: "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fdlsoft.dmm.co.jp%2Fdetail%2Fnext_0264%2F&af_id=erogefinder-002&ch=search_link&ch_id=link",
-    dlsiteUrl: "#",
-    sampleUrl: "#",
+    fanzaUrl:
+      "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fdlsoft.dmm.co.jp%2Fdetail%2Fnext_0264%2F&af_id=erogefinder-002&ch=search_link&ch_id=link",
+    dlsiteUrl: "",
+    sampleUrl: "",
   },
   {
     id: 2,
@@ -296,12 +324,12 @@ export const gameDetails: GameDetail[] = [
       "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&q=80",
     ],
     relatedWorks: [
-      { id: 1, title: "サクラノ詩 -桜の樹の下を歩む-", thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=200&q=80", maker: "HOOKSOFT" },
+      { id: 1, title: "催眠術4", thumbnail: GAME1_PLACEHOLDER.thumbnail, maker: "筆柿そふと" },
       { id: 4, title: "恋するココロと魔法のコトバ", thumbnail: "https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=200&q=80", maker: "まどそふと" },
       { id: 5, title: "ハミダククリエイティブプラス", thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=200&q=80", maker: "まどそふと" },
     ],
     similarGenreWorks: [
-      { id: 1, title: "サクラノ詩 -桜の樹の下を歩む-", thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=200&q=80", maker: "HOOKSOFT" },
+      { id: 1, title: "催眠術4", thumbnail: GAME1_PLACEHOLDER.thumbnail, maker: "筆柿そふと" },
       { id: 3, title: "天使・緑々 RE-BOOT!", thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=200&q=80", maker: "ゆずソフト" },
     ],
     fanzaUrl: "#",
@@ -343,7 +371,7 @@ export const gameDetails: GameDetail[] = [
       "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80",
     ],
     relatedWorks: [
-      { id: 1, title: "サクラノ詩 -桜の樹の下を歩む-", thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=200&q=80", maker: "HOOKSOFT" },
+      { id: 1, title: "催眠術4", thumbnail: GAME1_PLACEHOLDER.thumbnail, maker: "筆柿そふと" },
       { id: 5, title: "ハミダククリエイティブプラス", thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=200&q=80", maker: "まどそふと" },
       { id: 2, title: "アマカノ2", thumbnail: "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=200&q=80", maker: "あざらしそふと" },
     ],
@@ -390,12 +418,12 @@ export const gameDetails: GameDetail[] = [
       "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=400&q=80",
     ],
     relatedWorks: [
-      { id: 1, title: "サクラノ詩 -桜の樹の下を歩む-", thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=200&q=80", maker: "HOOKSOFT" },
+      { id: 1, title: "催眠術4", thumbnail: GAME1_PLACEHOLDER.thumbnail, maker: "筆柿そふと" },
       { id: 2, title: "アマカノ2", thumbnail: "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=200&q=80", maker: "あざらしそふと" },
       { id: 5, title: "ハミダククリエイティブプラス", thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=200&q=80", maker: "まどそふと" },
     ],
     similarGenreWorks: [
-      { id: 1, title: "サクラノ詩 -桜の樹の下を歩む-", thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=200&q=80", maker: "HOOKSOFT" },
+      { id: 1, title: "催眠術4", thumbnail: GAME1_PLACEHOLDER.thumbnail, maker: "筆柿そふと" },
       { id: 5, title: "ハミダククリエイティブプラス", thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=200&q=80", maker: "まどそふと" },
     ],
     fanzaUrl: "#",
@@ -437,7 +465,7 @@ export const gameDetails: GameDetail[] = [
     relatedWorks: [
       { id: 2, title: "アマカノ2", thumbnail: "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=200&q=80", maker: "あざらしそふと" },
       { id: 3, title: "天使・緑々 RE-BOOT!", thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=200&q=80", maker: "ゆずソフト" },
-      { id: 1, title: "サクラノ詩 -桜の樹の下を歩む-", thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=200&q=80", maker: "HOOKSOFT" },
+      { id: 1, title: "催眠術4", thumbnail: GAME1_PLACEHOLDER.thumbnail, maker: "筆柿そふと" },
     ],
     similarGenreWorks: [
       { id: 3, title: "天使・緑々 RE-BOOT!", thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=200&q=80", maker: "ゆずソフト" },
@@ -475,16 +503,16 @@ export const rankingItems: RankingItem[] = [
   {
     rank: 1,
     id: 1,
-    title: "サクラノ詩 -桜の森の下を歩む-",
-    maker: "HOOKSOFT",
-    thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80",
-    tags: ["学園", "恋愛", "ピュア", "Live2D"],
-    price: "¥8,800",
-    rating: 4.8,
-    likes: 1256,
+    title: "催眠術4",
+    maker: "筆柿そふと",
+    thumbnail: GAME1_PLACEHOLDER.thumbnail,
+    tags: ["王道催眠ADV", "ADV", "フルボイス"],
+    price: "¥8,000",
+    rating: 3.7,
+    likes: 3858,
     views: 8420,
-    comment: "優しくて、あたたかい物語。キャラとの絆が深い。",
-    releaseDate: "2024/05/31",
+    comment: "身近なヒロインとの関係が丁寧に描かれる催眠ADVの定番。",
+    releaseDate: "2019/03/29",
   },
   {
     rank: 2,
@@ -545,16 +573,16 @@ export const rankingItems: RankingItem[] = [
   {
     rank: 6,
     id: 1,
-    title: "サクラノ詩 -桜の森の下を歩む-",
-    maker: "HOOKSOFT",
-    thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80",
-    tags: ["学園", "恋愛", "ピュア"],
-    price: "¥8,800",
-    rating: 4.8,
-    likes: 1256,
+    title: "催眠術4",
+    maker: "筆柿そふと",
+    thumbnail: GAME1_PLACEHOLDER.thumbnail,
+    tags: ["王道催眠ADV", "ADV"],
+    price: "¥8,000",
+    rating: 3.7,
+    likes: 3858,
     views: 8420,
-    comment: "優しくて、あたたかい物語。キャラとの絆が深い。",
-    releaseDate: "2024/05/31",
+    comment: "身近なヒロインとの関係が丁寧に描かれる催眠ADVの定番。",
+    releaseDate: "2019/03/29",
   },
   {
     rank: 7,
@@ -634,18 +662,18 @@ export interface SaleItem {
 export const saleItems: SaleItem[] = [
   {
     id: 1,
-    title: "サクラノ詩 -桜の森の下を歩む-",
-    maker: "HOOKSOFT",
-    thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80",
-    tags: ["学園", "恋愛", "ピュア"],
-    originalPrice: "¥8,800",
-    salePrice: "¥4,400",
+    title: "催眠術4",
+    maker: "筆柿そふと",
+    thumbnail: GAME1_PLACEHOLDER.thumbnail,
+    tags: ["王道催眠ADV", "ADV"],
+    originalPrice: "¥8,000",
+    salePrice: "¥4,000",
     discountPercent: 50,
-    rating: 4.8,
-    likes: 1256,
+    rating: 3.7,
+    likes: 3858,
     views: 8920,
     saleEndDate: "2026/05/27",
-    comment: "優しい物語が心に残る。50%OFFは必見。",
+    comment: "催眠術シリーズの人気作。セール時は要チェック。",
   },
   {
     id: 2,
@@ -1156,14 +1184,15 @@ export const reviews: Review[] = [
   {
     id: 1,
     gameId: 1,
-    title: "サクラノ詩 -桜の森の下を歩む-",
-    maker: "HOOKSOFT",
-    thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500&q=80",
-    tags: ["学園", "恋愛", "Live2D"],
-    rating: 4.8,
-    price: "8,800円",
-    reviewText: "Live2Dの動きが良い。キャラの表情がちゃんと動くから、見てるだけで気持ちいい。シナリオ量は少なめだけど、その分雰囲気を楽しむゲーム。",
-    recommendedFor: "Live2D好き・キャラ重視・雰囲気重視の人",
+    title: "催眠術4",
+    maker: "筆柿そふと",
+    thumbnail: GAME1_PLACEHOLDER.thumbnail,
+    tags: ["王道催眠ADV", "ADV", "フルボイス"],
+    rating: 3.7,
+    price: "8,000円",
+    reviewText:
+      "姉妹や幼馴染など、身近なキャラとの関係描写が丁寧。日常パートの積み上げがあり、王道催眠ADVとして遊びやすい。気になる方はFANZAの評価も参考に。",
+    recommendedFor: "王道催眠ADV好き・人間関係ドラマ好き・シリーズ入門したい人",
     reviewDate: "2024/05/28",
     href: "/game/1",
   },
