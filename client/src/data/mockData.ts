@@ -257,7 +257,7 @@ export const gameDetails: GameDetail[] = [
       { id: 5, title: "ハミダククリエイティブプラス", thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=200&q=80", maker: "まどそふと" },
       { id: 2, title: "アマカノ2", thumbnail: "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=200&q=80", maker: "あざらしそふと" },
     ],
-    fanzaUrl: "#",
+    fanzaUrl: "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fdlsoft.dmm.co.jp%2Fdetail%2Fnext_0264%2F&af_id=erogefinder-002&ch=search_link&ch_id=link",
     dlsiteUrl: "#",
     sampleUrl: "#",
   },
