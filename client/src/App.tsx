@@ -1,0 +1,72 @@
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import NotFound from "@/pages/NotFound";
+import { Route, Switch } from "wouter";
+import ErrorBoundary from "./components/ErrorBoundary";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import Home from "./pages/Home";
+import GameDetail from "./pages/GameDetail";
+import Ranking from "@/pages/Ranking";
+import Sale from "@/pages/Sale";
+import Genres from "@/pages/Genres";
+import Environment from "@/pages/Environment";
+import Reviews from "@/pages/Reviews";
+import Features from "@/pages/Features";
+import Doujin from "@/pages/Doujin";
+import Makers from "@/pages/Makers";
+import Search from "@/pages/Search";
+import Contact from "@/pages/Contact";
+import About from "@/pages/About";
+import Privacy from "@/pages/Privacy";
+import Terms from "@/pages/Terms";
+import Disclaimer from "@/pages/Disclaimer";
+
+
+function Router() {
+  return (
+    <Switch>
+      <Route path={"/"} component={Home} />
+      <Route path={"/game/:id"} component={GameDetail} />
+      <Route path="/ranking" component={Ranking} />
+      <Route path="/sale" component={Sale} />
+      <Route path="/genres" component={Genres} />
+      <Route path="/environment" component={Environment} />
+      <Route path="/reviews" component={Reviews} />
+      <Route path="/features" component={Features} />
+      <Route path="/doujin" component={Doujin} />
+      <Route path="/makers" component={Makers} />
+      <Route path="/search" component={Search} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/about" component={About} />
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/terms" component={Terms} />
+      <Route path="/disclaimer" component={Disclaimer} />
+      <Route path={"/404"} component={NotFound} />
+      {/* Final fallback route */}
+      <Route component={NotFound} />
+    </Switch>
+  );
+}
+
+// NOTE: About Theme
+// - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
+//   to keep consistent foreground/background color across components
+// - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
+
+function App() {
+  return (
+    <ErrorBoundary>
+      <ThemeProvider
+        defaultTheme="light"
+        // switchable
+      >
+        <TooltipProvider>
+          <Toaster />
+          <Router />
+        </TooltipProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
+  );
+}
+
+export default App;
