@@ -41,6 +41,46 @@ function CTAButton({ label, onClick, isPrimary = false }: { label: string; onCli
   );
 }
 
+function CTAExternalLink({
+  label,
+  href,
+  isPrimary = false,
+}: {
+  label: string;
+  href?: string;
+  isPrimary?: boolean;
+}) {
+  const canOpen = typeof href === "string" && /^https?:\/\//.test(href);
+
+  if (!canOpen) {
+    return (
+      <CTAButton
+        label={label}
+        isPrimary={isPrimary}
+        onClick={() => toast(`${label}は準備中です`)}
+      />
+    );
+  }
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className={`btn-press w-full py-3 rounded-lg font-bold transition-all text-center ${
+        isPrimary ? "text-white hover:opacity-90" : "border hover:bg-pink-50"
+      }`}
+      style={
+        isPrimary
+          ? { background: "oklch(0.62 0.22 355)" }
+          : { borderColor: "oklch(0.62 0.22 355)", color: "oklch(0.62 0.22 355)" }
+      }
+    >
+      {label}
+    </a>
+  );
+}
+
 function WorkCard({ work }: { work: { id: number; title: string; thumbnail: string; maker: string } }) {
   return (
     <div className="bg-white rounded-xl border overflow-hidden flex flex-col h-full" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
@@ -195,9 +235,9 @@ export default function GameDetail() {
               <div className="bg-white rounded-xl border p-5" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
                 <p className="text-xs font-bold mb-3" style={{ color: "oklch(0.55 0.04 310)" }}>この作品を購入</p>
                 <div className="flex flex-col gap-2.5">
-                  <CTAButton label="FANZAで見る" onClick={() => toast("FANZAリンクは準備中です")} isPrimary />
-                  <CTAButton label="DLsiteで見る" onClick={() => toast("DLsiteリンクは準備中です")} isPrimary />
-                  <CTAButton label="サンプルを見る" onClick={() => toast("サンプルページは準備中です")} />
+                  <CTAExternalLink label="FANZAで見る" href={gameDetail.fanzaUrl} isPrimary />
+                  <CTAExternalLink label="DLsiteで見る" href={gameDetail.dlsiteUrl} isPrimary />
+                  <CTAExternalLink label="サンプルを見る" href={gameDetail.sampleUrl} />
                 </div>
               </div>
 
@@ -304,9 +344,9 @@ export default function GameDetail() {
             <div className="bg-white rounded-xl border p-4" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
               <p className="text-xs font-bold mb-3" style={{ color: "oklch(0.55 0.04 310)" }}>この作品を購入</p>
               <div className="flex flex-col gap-2">
-                <CTAButton label="FANZAで見る" onClick={() => toast("FANZAリンクは準備中です")} isPrimary />
-                <CTAButton label="DLsiteで見る" onClick={() => toast("DLsiteリンクは準備中です")} isPrimary />
-                <CTAButton label="サンプルを見る" onClick={() => toast("サンプルページは準備中です")} />
+                <CTAExternalLink label="FANZAで見る" href={gameDetail.fanzaUrl} isPrimary />
+                <CTAExternalLink label="DLsiteで見る" href={gameDetail.dlsiteUrl} isPrimary />
+                <CTAExternalLink label="サンプルを見る" href={gameDetail.sampleUrl} />
               </div>
             </div>
 
