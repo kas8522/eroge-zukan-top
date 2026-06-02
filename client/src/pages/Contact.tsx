@@ -26,11 +26,34 @@ export default function Contact() {
         <div className="max-w-2xl bg-white rounded-2xl p-6 sm:p-8 border border-pink-100 space-y-6">
           <div className="space-y-2">
             <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-              掲載内容の修正依頼、削除依頼、広告掲載、その他のお問い合わせはこちらからご連絡ください。
+              掲載内容の修正依頼・削除依頼、広告掲載のご相談、その他のお問い合わせはこちらからご連絡ください。
             </p>
-            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-              ※ 迷惑メール対策のため、メールアドレスはサイト上に直接掲載していません。
-            </p>
+            <div className="rounded-lg border border-pink-200 bg-pink-50 p-4">
+              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                迷惑メール対策のため、メールアドレスはサイト上に直接掲載していません。
+                <br />
+                フォームのURLを設定すると、下のボタンから外部フォーム（Googleフォーム等）を開けるようになります。
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="rounded-xl border border-pink-100 bg-white p-4">
+              <p className="text-xs font-bold text-gray-900 mb-2">よくあるお問い合わせ</p>
+              <ul className="text-xs text-gray-700 space-y-1.5 list-disc list-inside">
+                <li>作品情報の誤り・更新のご連絡</li>
+                <li>画像・文章などの掲載に関するご相談</li>
+                <li>広告掲載・タイアップのご相談</li>
+              </ul>
+            </div>
+            <div className="rounded-xl border border-pink-100 bg-white p-4">
+              <p className="text-xs font-bold text-gray-900 mb-2">ご連絡の目安</p>
+              <ul className="text-xs text-gray-700 space-y-1.5 list-disc list-inside">
+                <li>対象ページのURL</li>
+                <li>該当箇所（テキスト/画像/位置）</li>
+                <li>ご希望（修正/削除/追記など）</li>
+              </ul>
+            </div>
           </div>
 
           {CONTACT_FORM_URL ? (

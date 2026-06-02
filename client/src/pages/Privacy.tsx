@@ -4,7 +4,7 @@ import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 
 export default function Privacy() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ background: "oklch(0.992 0.006 355)" }}>
       {/* ヘッダー */}
       <div className="container py-6 sm:py-8">
         <Link href="/" className="inline-flex items-center gap-1 text-pink-600 hover:text-pink-700 mb-4">
@@ -13,13 +13,16 @@ export default function Privacy() {
         </Link>
         
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">プライバシーポリシー</h1>
+        <p className="text-gray-600 text-sm sm:text-base">
+          当サイトにおける個人情報の取り扱い・Cookie等の利用についての方針です。
+        </p>
       </div>
       <AffiliateDisclosure />
 
       {/* 本文 */}
       <div className="container pb-12 sm:pb-16">
-        <div className="max-w-2xl space-y-6">
-          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-pink-100 space-y-8">
+        <div className="mx-auto max-w-3xl space-y-6">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-pink-100 space-y-8 shadow-sm">
             {/* 個人情報の利用目的 */}
             <section>
               <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">個人情報の利用目的</h2>

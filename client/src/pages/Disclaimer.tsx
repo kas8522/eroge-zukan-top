@@ -4,7 +4,7 @@ import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 
 export default function Disclaimer() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ background: "oklch(0.992 0.006 355)" }}>
       {/* ヘッダー */}
       <div className="container py-6 sm:py-8">
         <Link href="/" className="inline-flex items-center gap-1 text-pink-600 hover:text-pink-700 mb-4">
@@ -13,13 +13,16 @@ export default function Disclaimer() {
         </Link>
         
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">免責事項・広告について</h1>
+        <p className="text-gray-600 text-sm sm:text-base">
+          当サイトの掲載情報、外部リンク、広告表示に関するご案内です。
+        </p>
       </div>
       <AffiliateDisclosure />
 
       {/* 本文 */}
       <div className="container pb-12 sm:pb-16">
-        <div className="max-w-2xl space-y-6">
-          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-pink-100 space-y-8">
+        <div className="mx-auto max-w-3xl space-y-6">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-pink-100 space-y-8 shadow-sm">
             {/* 掲載情報について */}
             <section>
               <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">掲載情報について</h2>
