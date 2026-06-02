@@ -40,7 +40,7 @@ export default function Contact() {
               rel="noreferrer"
               className="btn-press inline-flex w-full items-center justify-center rounded-lg bg-gradient-to-r from-pink-500 to-pink-600 py-3 font-bold text-white hover:from-pink-600 hover:to-pink-700 transition-all"
             >
-              お問い合わせフォームへ
+              お問い合わせフォームを開く
             </a>
           ) : (
             <div className="rounded-lg border border-pink-200 bg-pink-50 p-4">
