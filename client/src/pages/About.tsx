@@ -1,5 +1,6 @@
 import { ChevronLeft } from "lucide-react";
 import { Link } from "wouter";
+import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 
 export default function About() {
   return (
@@ -14,6 +15,7 @@ export default function About() {
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">運営者情報</h1>
         <p className="text-gray-600 text-sm sm:text-base">エロゲ図鑑の運営方針について</p>
       </div>
+      <AffiliateDisclosure />
 
       {/* 本文 */}
       <div className="container pb-12 sm:pb-16">

@@ -1,5 +1,6 @@
 // PC: 左にメイン画像・右に情報 / スマホ: 縦積み
 import { gameDetails, environmentItems } from "@/data/mockData";
+import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 import { Heart, Star } from "lucide-react";
 import { toast } from "sonner";
 import { Link, useRoute } from "wouter";
@@ -118,6 +119,7 @@ export default function GameDetail() {
           </Link>
         </div>
       </header>
+      <AffiliateDisclosure />
 
       <main className="flex-1 py-4">
         <div className="container">

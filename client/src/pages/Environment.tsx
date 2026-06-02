@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { environmentProducts, useCaseCards } from "@/data/mockData";
+import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 
 export default function Environment() {
   return (
@@ -18,6 +19,7 @@ export default function Environment() {
           </p>
         </div>
       </div>
+      <AffiliateDisclosure />
 
       {/* メインコンテンツ */}
       <div className="max-w-6xl mx-auto px-4 py-8 sm:py-12">

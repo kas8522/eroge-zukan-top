@@ -2,6 +2,7 @@ import { Link, useLocation } from "wouter";
 import { Star, Search as SearchIcon } from "lucide-react";
 import { useState, useMemo } from "react";
 import { gameDetails } from "../data/mockData";
+import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 
 export default function Search() {
   const [location, setLocation] = useLocation();
@@ -69,6 +70,7 @@ export default function Search() {
           </p>
         </div>
       </div>
+      <AffiliateDisclosure />
 
       {/* メインコンテンツ */}
       <div className="max-w-6xl mx-auto px-4 py-8 sm:py-12">

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { ChevronRight } from "lucide-react";
 import { genres, genreRecommendations, gameDetails } from "@/data/mockData";
+import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 
 // ===== ジャンルカード =====
 function GenreCard({ genre }: { genre: typeof genres[0] }) {
@@ -107,6 +108,7 @@ export default function Genres() {
           </p>
         </div>
       </div>
+      <AffiliateDisclosure />
 
       {/* 注目ジャンル */}
       <section className="py-5 lg:py-6" style={{ background: "oklch(0.992 0.006 355)" }}>

@@ -1,5 +1,6 @@
 import { ChevronLeft } from "lucide-react";
 import { Link } from "wouter";
+import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 
 export default function Terms() {
   return (
@@ -13,6 +14,7 @@ export default function Terms() {
         
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">利用規約</h1>
       </div>
+      <AffiliateDisclosure />
 
       {/* 本文 */}
       <div className="container pb-12 sm:pb-16">

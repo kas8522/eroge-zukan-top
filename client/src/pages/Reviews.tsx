@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { reviews } from "@/data/mockData";
 import { Star } from "lucide-react";
+import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 
 export default function Reviews() {
   const tabs = ["すべて", "新着", "高評価", "セール中", "同人ゲーム", "Live2D", "初心者向け"];
@@ -21,6 +22,7 @@ export default function Reviews() {
           </p>
         </div>
       </div>
+      <AffiliateDisclosure />
 
       {/* メインコンテンツ */}
       <div className="max-w-6xl mx-auto px-4 py-8 sm:py-12">

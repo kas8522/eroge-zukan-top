@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { doujinGames, doujinHighlights } from "@/data/mockData";
 import { Star, Zap } from "lucide-react";
+import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 
 export default function Doujin() {
   const tabs = ["すべて", "低価格", "短時間で遊べる", "セール中", "スマホ対応", "ブラウザ対応", "高評価", "新着"];
@@ -24,6 +25,7 @@ export default function Doujin() {
           </p>
         </div>
       </div>
+      <AffiliateDisclosure />
 
       {/* メインコンテンツ */}
       <div className="max-w-6xl mx-auto px-4 py-8 sm:py-12">

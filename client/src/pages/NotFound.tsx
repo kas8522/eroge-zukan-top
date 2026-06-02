@@ -33,6 +33,12 @@ export default function NotFound() {
             It may have been moved or deleted.
           </p>
 
+          <div className="mb-6 rounded-xl border border-pink-100 bg-white px-4 py-2.5 text-left">
+            <p className="text-[12px] leading-relaxed text-gray-600">
+              当サイトはアフィリエイト広告を利用しています
+            </p>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button
               onClick={handleGoHome}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { Star, Heart, Eye, ChevronRight, Crown } from "lucide-react";
 import { rankingItems } from "@/data/mockData";
+import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 
 type RankingTab = "総合" | "急上昇" | "新作" | "セール中" | "同人ゲーム" | "Live2D";
 
@@ -248,6 +249,7 @@ export default function Ranking() {
           </p>
         </div>
       </div>
+      <AffiliateDisclosure />
 
       {/* タブ */}
       <div className="border-b sticky top-0 bg-white z-10" style={{ borderColor: "oklch(0.92 0.02 355)" }}>

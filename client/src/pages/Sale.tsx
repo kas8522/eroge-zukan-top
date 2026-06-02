@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { Star, Heart, Eye, ChevronRight } from "lucide-react";
 import { saleItems } from "@/data/mockData";
+import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 
 type SaleTab = "すべて" | "本日終了" | "30%以上OFF" | "50%以上OFF" | "人気順" | "同人ゲーム" | "Live2D";
 
@@ -114,6 +115,7 @@ export default function Sale() {
           </p>
         </div>
       </div>
+      <AffiliateDisclosure />
 
       {/* タブ */}
       <div className="border-b sticky top-0 bg-white z-10" style={{ borderColor: "oklch(0.92 0.02 355)" }}>

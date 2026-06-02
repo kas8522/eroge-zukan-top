@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Star } from "lucide-react";
 import { makers, makerHighlights, gameDetails } from "../data/mockData";
+import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 
 export default function Makers() {
   const tabs = [
@@ -31,6 +32,7 @@ export default function Makers() {
           </p>
         </div>
       </div>
+      <AffiliateDisclosure />
 
       {/* メインコンテンツ */}
       <div className="max-w-6xl mx-auto px-4 py-8 sm:py-12">

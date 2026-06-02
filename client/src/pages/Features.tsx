@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { features, featureGames } from "@/data/mockData";
 import { Star } from "lucide-react";
+import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 
 export default function Features() {
   const tabs = ["すべて", "初心者向け", "セールまとめ", "同人ゲーム", "Live2D", "泣きゲー", "短時間で遊べる", "管理人おすすめ"];
@@ -26,6 +27,7 @@ export default function Features() {
           </p>
         </div>
       </div>
+      <AffiliateDisclosure />
 
       {/* メインコンテンツ */}
       <div className="max-w-6xl mx-auto px-4 py-8 sm:py-12">
