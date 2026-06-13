@@ -12,6 +12,411 @@ export interface FanzaProduct {
   genres: string[];
 }
 
-export const fanzaProductsImportedAt: string | null = null;
+export const fanzaProductsImportedAt: string | null = "2026-06-13T15:29:12.856Z";
 
-export const fanzaProducts: FanzaProduct[] = [];
+export const fanzaProducts: FanzaProduct[] = [
+  {
+    "contentId": "vrkm01869",
+    "title": "【VR】天井特化アングルVR ～都合のイイ女～ 桜ゆの",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dvrkm01869&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=vrkm01869",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/vrkm01869/vrkm01869pl.jpg",
+    "price": "998~",
+    "listPrice": "998~",
+    "releaseDate": "2026-08-05 00:00:00",
+    "maker": "ケイ・エム・プロデュース",
+    "genres": [
+      "ハイクオリティVR",
+      "8KVR",
+      "単体作品",
+      "VR専用",
+      "独占配信",
+      "中出し",
+      "騎乗位",
+      "美乳",
+      "主観"
+    ]
+  },
+  {
+    "contentId": "vrkm01847",
+    "title": "【VR】KMP専属！アヘ顔の天才！！えなち2！！！ 沙月恵奈",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dvrkm01847&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=vrkm01847",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/vrkm01847/vrkm01847pl.jpg",
+    "price": "998~",
+    "listPrice": "998~",
+    "releaseDate": "2026-08-02 00:00:00",
+    "maker": "ケイ・エム・プロデュース",
+    "genres": [
+      "ハイクオリティVR",
+      "8KVR",
+      "単体作品",
+      "VR専用",
+      "独占配信",
+      "中出し",
+      "騎乗位",
+      "美乳",
+      "主観"
+    ]
+  },
+  {
+    "contentId": "h_1714grace00035",
+    "title": "加奈を独占―君の聖域＜Vライン＞にピントを合わせて― 日下部加奈",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dh_1714grace00035&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=h_1714grace00035",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/h_1714grace00035/h_1714grace00035pl.jpg",
+    "price": "2980~",
+    "listPrice": "2980~",
+    "releaseDate": "2026-07-31 00:00:00",
+    "maker": "grace",
+    "genres": [
+      "ハイビジョン",
+      "イメージビデオ",
+      "単体作品",
+      "その他フェチ",
+      "セクシー",
+      "着エロ",
+      "美乳",
+      "アイドル・芸能人"
+    ]
+  },
+  {
+    "contentId": "vrkm01849",
+    "title": "【VR】鬼ヶ島を追われたギャル鬼娘リカちゃんのアヘ顔で中出ししまくって孕ませて、めでたしめでたしVR 椿りか",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dvrkm01849&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=vrkm01849",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/vrkm01849/vrkm01849pl.jpg",
+    "price": "998~",
+    "listPrice": "998~",
+    "releaseDate": "2026-07-29 00:00:00",
+    "maker": "ケイ・エム・プロデュース",
+    "genres": [
+      "ハイクオリティVR",
+      "8KVR",
+      "単体作品",
+      "VR専用",
+      "独占配信",
+      "中出し",
+      "騎乗位",
+      "美乳",
+      "主観"
+    ]
+  },
+  {
+    "contentId": "vrkm01865",
+    "title": "【VR】これぞ8K！顔面特化アングルVR ～【顔面特化】x【おっぱい特化】美顔とエロい美巨乳とクビレBODY！！博多弁のカノジョとイチャラブ中出しSEX～ 善場まみ",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dvrkm01865&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=vrkm01865",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/vrkm01865/vrkm01865pl.jpg",
+    "price": "998~",
+    "listPrice": "998~",
+    "releaseDate": "2026-07-25 00:00:00",
+    "maker": "ケイ・エム・プロデュース",
+    "genres": [
+      "主観",
+      "美乳",
+      "騎乗位",
+      "中出し",
+      "独占配信",
+      "VR専用",
+      "単体作品",
+      "8KVR",
+      "ハイクオリティVR"
+    ]
+  },
+  {
+    "contentId": "vrkm01846",
+    "title": "【VR】これぞ8K！顔面特化アングルVR ～フェラ特化！！ベロを見せつけてフェラごっくん大好き。アノ声で「お口に精子ちょうだい！」と精子を懇願するゆのちゃん～ 桜ゆの",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dvrkm01846&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=vrkm01846",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/vrkm01846/vrkm01846pl.jpg",
+    "price": "998~",
+    "listPrice": "998~",
+    "releaseDate": "2026-07-22 00:00:00",
+    "maker": "ケイ・エム・プロデュース",
+    "genres": [
+      "主観",
+      "美乳",
+      "騎乗位",
+      "中出し",
+      "独占配信",
+      "VR専用",
+      "単体作品",
+      "8KVR",
+      "ハイクオリティVR"
+    ]
+  },
+  {
+    "contentId": "vrkm01867",
+    "title": "【VR】東京都〇〇区童貞筆おろしプロジェクト 倉木しおり",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dvrkm01867&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=vrkm01867",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/vrkm01867/vrkm01867pl.jpg",
+    "price": "998~",
+    "listPrice": "998~",
+    "releaseDate": "2026-07-20 00:00:00",
+    "maker": "ケイ・エム・プロデュース",
+    "genres": [
+      "ハイクオリティVR",
+      "8KVR",
+      "単体作品",
+      "VR専用",
+      "独占配信",
+      "中出し",
+      "騎乗位",
+      "美乳",
+      "主観"
+    ]
+  },
+  {
+    "contentId": "bibivr00172",
+    "title": "【VR】都内某所にあるハメ放題のセクシーラウンジで人生終了するくらい金も精子も注ぎ込み！！W痴女の骨抜きアフター 尾崎えりか 椿りか",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dbibivr00172&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=bibivr00172",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/bibivr00172/bibivr00172pl.jpg",
+    "price": "400~",
+    "listPrice": "400~",
+    "releaseDate": "2026-07-19 00:00:00",
+    "maker": "KMPVR-bibi-",
+    "genres": [
+      "ハイクオリティVR",
+      "8KVR",
+      "VR専用",
+      "独占配信",
+      "中出し",
+      "痴女",
+      "3P・4P",
+      "フェラ",
+      "美少女"
+    ]
+  },
+  {
+    "contentId": "301mbdd02187",
+    "title": "白石なみ/White Waves～なみのセピアの初恋～",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3D301mbdd02187&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=301mbdd02187",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/301mbdd02187/301mbdd02187pl.jpg",
+    "price": "2680~",
+    "listPrice": "2680~",
+    "releaseDate": "2026-07-17 00:00:00",
+    "maker": "メディアブランド",
+    "genres": [
+      "イメージビデオ",
+      "ハイビジョン",
+      "単体作品",
+      "美少女"
+    ]
+  },
+  {
+    "contentId": "301mbdd02186",
+    "title": "渡部ほの/Platinum Body～ほのに群がる男たち～",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3D301mbdd02186&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=301mbdd02186",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/301mbdd02186/301mbdd02186pl.jpg",
+    "price": "2680~",
+    "listPrice": "2680~",
+    "releaseDate": "2026-07-17 00:00:00",
+    "maker": "メディアブランド",
+    "genres": [
+      "イメージビデオ",
+      "ハイビジョン",
+      "巨乳",
+      "単体作品",
+      "美少女"
+    ]
+  },
+  {
+    "contentId": "301mbdd02185",
+    "title": "佐々木さき/ささきさきっす",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3D301mbdd02185&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=301mbdd02185",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/301mbdd02185/301mbdd02185pl.jpg",
+    "price": "2680~",
+    "listPrice": "2680~",
+    "releaseDate": "2026-07-17 00:00:00",
+    "maker": "メディアブランド",
+    "genres": [
+      "イメージビデオ",
+      "ハイビジョン",
+      "単体作品",
+      "美少女"
+    ]
+  },
+  {
+    "contentId": "vrkm01839",
+    "title": "【VR】最高に気持ちイイ13作品集めました。ヌルテカエステノーカット施術1043分",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dvrkm01839&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=vrkm01839",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/vrkm01839/vrkm01839pl.jpg",
+    "price": "1480~",
+    "listPrice": "1480~",
+    "releaseDate": "2026-07-16 00:00:00",
+    "maker": "ケイ・エム・プロデュース",
+    "genres": [
+      "中出し",
+      "エステ",
+      "ローション・オイル",
+      "独占配信",
+      "VR専用",
+      "セット商品",
+      "8KVR",
+      "ハイクオリティVR"
+    ]
+  },
+  {
+    "contentId": "vrkm01837",
+    "title": "【VR】淫らに！貪欲に！下品に！理性が吹き飛ぶ危険すぎ快感！NTR BEST5時間",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dvrkm01837&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=vrkm01837",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/vrkm01837/vrkm01837pl.jpg",
+    "price": "998~",
+    "listPrice": "998~",
+    "releaseDate": "2026-07-14 00:00:00",
+    "maker": "ケイ・エム・プロデュース",
+    "genres": [
+      "ハイクオリティVR",
+      "8KVR",
+      "VR専用",
+      "独占配信",
+      "ベスト・総集編",
+      "中出し",
+      "痴女",
+      "寝取り・寝取られ・NTR"
+    ]
+  },
+  {
+    "contentId": "h_1832msoc00056",
+    "title": "恵比寿のマンション型個室メンエス- 乳首舐めオプション おおくまみお （21歳）",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dh_1832msoc00056&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=h_1832msoc00056",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/h_1832msoc00056/h_1832msoc00056pt.jpg",
+    "price": "780~",
+    "listPrice": "780~",
+    "releaseDate": "2026-07-14 00:00:00",
+    "maker": "メンエス・オナクラ盗撮",
+    "genres": [
+      "ハイビジョン",
+      "エステ",
+      "盗撮・のぞき",
+      "素人"
+    ]
+  },
+  {
+    "contentId": "bibivr00171",
+    "title": "【VR】都内某所にあるハメ放題のセクシーラウンジで人生終了するくらい金も精子も注ぎ込み！！超VIP爆抜きエロバースデイ 小那海あや 尾崎えりか 椿りか 末広純 弥生みづき",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dbibivr00171&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=bibivr00171",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/bibivr00171/bibivr00171pl.jpg",
+    "price": "400~",
+    "listPrice": "400~",
+    "releaseDate": "2026-07-12 00:00:00",
+    "maker": "KMPVR-bibi-",
+    "genres": [
+      "ハイクオリティVR",
+      "8KVR",
+      "VR専用",
+      "独占配信",
+      "中出し",
+      "痴女",
+      "ハーレム",
+      "フェラ",
+      "美少女"
+    ]
+  },
+  {
+    "contentId": "ymlw00071",
+    "title": "「やだぁ～こんなに大きくなってるぅ～」玄関先で欲求不満の奥さんにムリヤリち○ぽ弄られてフル勃起してしまい…4時間ベスト",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dymlw00071&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=ymlw00071",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/ymlw00071/ymlw00071pl.jpg",
+    "price": "2180~",
+    "listPrice": "2180~",
+    "releaseDate": "2026-07-11 00:00:00",
+    "maker": "Yellow Moon（イエロームーン）",
+    "genres": [
+      "4時間以上作品",
+      "独占配信",
+      "巨乳",
+      "人妻・主婦",
+      "義母",
+      "巨尻",
+      "中出し"
+    ]
+  },
+  {
+    "contentId": "ymlw00070",
+    "title": "欲求不満な六十路五十路おばさんオナニーで我慢できずに…",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dymlw00070&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=ymlw00070",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/ymlw00070/ymlw00070pl.jpg",
+    "price": "2180~",
+    "listPrice": "2180~",
+    "releaseDate": "2026-07-11 00:00:00",
+    "maker": "Yellow Moon（イエロームーン）",
+    "genres": [
+      "独占配信",
+      "人妻・主婦",
+      "スレンダー",
+      "中出し",
+      "オナニー",
+      "熟女"
+    ]
+  },
+  {
+    "contentId": "xrl00090",
+    "title": "縛乳M奴狩り",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dxrl00090&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=xrl00090",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/xrl00090/xrl00090pl.jpg",
+    "price": "2480~",
+    "listPrice": "2480~",
+    "releaseDate": "2026-07-11 00:00:00",
+    "maker": "レアルワークス",
+    "genres": [
+      "独占配信",
+      "ベスト・総集編",
+      "辱め",
+      "巨乳フェチ",
+      "SM"
+    ]
+  },
+  {
+    "contentId": "usba00090",
+    "title": "特別捜査官緊縛マゾ調教 捕縛され媚薬に侵された美人女捜査官 足立友梨",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dusba00090&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=usba00090",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/usba00090/usba00090pl.jpg",
+    "price": "2800~",
+    "listPrice": "2800~",
+    "releaseDate": "2026-07-11 00:00:00",
+    "maker": "AVS collector’s",
+    "genres": [
+      "独占配信",
+      "縛り・緊縛",
+      "単体作品",
+      "M女",
+      "拘束",
+      "女捜査官"
+    ]
+  },
+  {
+    "contentId": "usag00094",
+    "title": "素人娘が固定バイブフェラGAMEに挑戦！！男のチ●ポをフェラで射精させたら賞金…でも先に自分がイッてしまったら追撃ピストン中出しセックス！！",
+    "affiliateUrl": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dusag00094&af_id=erogefinder-991&ch=api",
+    "productUrl": "https://video.dmm.co.jp/av/content/?id=usag00094",
+    "thumbnail": "https://pics.dmm.co.jp/digital/video/usag00094/usag00094pl.jpg",
+    "price": "2480~",
+    "listPrice": "2480~",
+    "releaseDate": "2026-07-11 00:00:00",
+    "maker": "うさぎ/妄想族",
+    "genres": [
+      "独占配信",
+      "企画",
+      "バイブ",
+      "中出し",
+      "素人",
+      "フェラ",
+      "妄想族"
+    ]
+  }
+];

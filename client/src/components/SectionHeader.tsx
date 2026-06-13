@@ -1,7 +1,6 @@
 // SectionHeader.tsx
 // デザイン: アイコン + 見出し + 「もっと見る」リンク
-// 参考画像に合わせてアイコンと文字の間隔・サイズを調整
-import { toast } from "sonner";
+import { Link } from "wouter";
 
 interface SectionHeaderProps {
   icon: string;
@@ -11,7 +10,13 @@ interface SectionHeaderProps {
   moreLabel?: string;
 }
 
-export default function SectionHeader({ icon, title, subtitle, moreHref, moreLabel = "もっと見る" }: SectionHeaderProps) {
+export default function SectionHeader({
+  icon,
+  title,
+  subtitle,
+  moreHref,
+  moreLabel = "もっと見る",
+}: SectionHeaderProps) {
   return (
     <div className="flex items-end justify-between mb-4">
       <div>
@@ -26,14 +31,14 @@ export default function SectionHeader({ icon, title, subtitle, moreHref, moreLab
         )}
       </div>
       {moreHref && (
-        <a
-          href={moreHref}
-          className="text-xs font-medium flex items-center gap-0.5 hover:underline shrink-0"
-          style={{ color: "oklch(0.62 0.22 355)" }}
-          onClick={(e) => { e.preventDefault(); toast(`「${title}」一覧ページは準備中です`); }}
-        >
-          {moreLabel} →
-        </a>
+        <Link href={moreHref}>
+          <a
+            className="text-xs font-medium flex items-center gap-0.5 hover:underline shrink-0"
+            style={{ color: "oklch(0.62 0.22 355)" }}
+          >
+            {moreLabel} →
+          </a>
+        </Link>
       )}
     </div>
   );

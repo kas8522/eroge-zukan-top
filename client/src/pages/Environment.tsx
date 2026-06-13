@@ -116,10 +116,11 @@ export default function Environment() {
                   </div>
 
                   <button
-                    onClick={() => {}}
-                    className="w-full block text-center bg-pink-600 hover:bg-pink-700 text-white font-medium py-2 sm:py-2.5 text-xs sm:text-sm rounded transition-colors active:scale-95"
+                    type="button"
+                    disabled
+                    className="w-full block text-center bg-gray-200 text-gray-500 font-medium py-2 sm:py-2.5 text-xs sm:text-sm rounded cursor-not-allowed"
                   >
-                    チェックする →
+                    購入リンク準備中
                   </button>
                 </div>
               </div>

@@ -149,9 +149,11 @@ export default function Makers() {
                   </div>
 
                   {/* ボタン */}
-                  <a href="#" className="w-full block text-center bg-pink-600 hover:bg-pink-700 text-white font-medium py-2 text-xs rounded transition-colors active:scale-95 mt-auto">
-                    作品を見る
-                  </a>
+                  <Link href={`/game/${maker.representativeGameIds[0]}`}>
+                    <a className="w-full block text-center bg-pink-600 hover:bg-pink-700 text-white font-medium py-2 text-xs rounded transition-colors active:scale-95 mt-auto">
+                      作品を見る
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>

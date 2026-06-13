@@ -1,8 +1,8 @@
 // FeatureReviewGenreSection.tsx
 // デザイン: 3カラム（特集まとめ・レビュー新着・ジャンルから探す）
-import { genres } from "@/data/mockData";
+import { features, genres, reviews } from "@/data/mockData";
 import { Star } from "lucide-react";
-import { toast } from "sonner";
+import { Link } from "wouter";
 
 function StarRating({ value }: { value: number }) {
   const full = Math.floor(value);
@@ -36,29 +36,28 @@ export default function FeatureReviewGenreSection() {
               <h2 className="section-title text-sm">
                 <span>🐾</span> 特集まとめ
               </h2>
-              <a href="#" className="text-xs" style={{ color: "oklch(0.62 0.22 355)" }}
-                onClick={(e) => { e.preventDefault(); toast("特集一覧は準備中です"); }}>
-                もっと見る →
-              </a>
+              <Link href="/features">
+                <a className="text-xs" style={{ color: "oklch(0.62 0.22 355)" }}>
+                  もっと見る →
+                </a>
+              </Link>
             </div>
             <div className="grid grid-cols-2 gap-2">
-              {[].map((f: any) => (
-                <button
-                  key={f.id}
-                  className="game-card rounded-xl overflow-hidden border text-left"
-                  style={{ borderColor: "oklch(0.92 0.02 355)" }}
-                  onClick={() => toast(`「${f.title}」は準備中です`)}
-                >
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img src={f.thumbnail} alt={f.title} className="w-full h-full object-cover" />
-                  </div>
-                  <div className="p-2 bg-white">
-                    <p className="text-[11px] font-bold line-clamp-2 leading-snug" style={{ color: "oklch(0.18 0.03 310)" }}>
-                      {f.title}
-                    </p>
-                    <p className="text-[9px] mt-0.5" style={{ color: "oklch(0.52 0.04 310)" }}>{f.description}</p>
-                  </div>
-                </button>
+              {features.slice(0, 4).map((f) => (
+                <Link key={f.id} href={f.href.startsWith("/") ? f.href : "/features"}>
+                  <a className="game-card rounded-xl overflow-hidden border text-left block"
+                    style={{ borderColor: "oklch(0.92 0.02 355)" }}>
+                    <div className="aspect-[4/3] overflow-hidden">
+                      <img src={f.thumbnail} alt={f.title} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="p-2 bg-white">
+                      <p className="text-[11px] font-bold line-clamp-2 leading-snug" style={{ color: "oklch(0.18 0.03 310)" }}>
+                        {f.title}
+                      </p>
+                      <p className="text-[9px] mt-0.5" style={{ color: "oklch(0.52 0.04 310)" }}>{f.description}</p>
+                    </div>
+                  </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -69,35 +68,34 @@ export default function FeatureReviewGenreSection() {
               <h2 className="section-title text-sm">
                 <span>📝</span> レビュー新着
               </h2>
-              <a href="#" className="text-xs" style={{ color: "oklch(0.62 0.22 355)" }}
-                onClick={(e) => { e.preventDefault(); toast("レビュー一覧は準備中です"); }}>
-                もっと見る →
-              </a>
+              <Link href="/reviews">
+                <a className="text-xs" style={{ color: "oklch(0.62 0.22 355)" }}>
+                  もっと見る →
+                </a>
+              </Link>
             </div>
             <div className="flex flex-col gap-2">
-              {[].map((r: any) => (
-                <button
-                  key={r.id}
-                  className="game-card bg-white rounded-xl border p-3 flex items-start gap-3 text-left"
-                  style={{ borderColor: "oklch(0.92 0.02 355)" }}
-                  onClick={() => toast(`「${r.title}」のレビューは準備中です`)}
-                >
-                  <img
-                    src={r.thumbnail}
-                    alt={r.title}
-                    className="w-12 h-12 rounded-lg object-cover shrink-0"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs font-bold line-clamp-1" style={{ color: "oklch(0.18 0.03 310)" }}>
-                      {r.title}
-                    </p>
-                    <p className="text-[10px] mb-1" style={{ color: "oklch(0.52 0.04 310)" }}>{r.maker}</p>
-                    <StarRating value={r.rating} />
-                    <p className="text-[10px] mt-1 line-clamp-2 leading-relaxed" style={{ color: "oklch(0.42 0.04 310)" }}>
-                      {r.excerpt}
-                    </p>
-                  </div>
-                </button>
+              {reviews.slice(0, 3).map((r) => (
+                <Link key={r.id} href={r.href}>
+                  <a className="game-card bg-white rounded-xl border p-3 flex items-start gap-3 text-left"
+                    style={{ borderColor: "oklch(0.92 0.02 355)" }}>
+                    <img
+                      src={r.thumbnail}
+                      alt={r.title}
+                      className="w-12 h-12 rounded-lg object-cover shrink-0"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-bold line-clamp-1" style={{ color: "oklch(0.18 0.03 310)" }}>
+                        {r.title}
+                      </p>
+                      <p className="text-[10px] mb-1" style={{ color: "oklch(0.52 0.04 310)" }}>{r.maker}</p>
+                      <StarRating value={r.rating} />
+                      <p className="text-[10px] mt-1 line-clamp-2 leading-relaxed" style={{ color: "oklch(0.42 0.04 310)" }}>
+                        {r.reviewText}
+                      </p>
+                    </div>
+                  </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -108,16 +106,19 @@ export default function FeatureReviewGenreSection() {
               <h2 className="section-title text-sm">
                 <span>🏷️</span> ジャンルから探す
               </h2>
+              <Link href="/genres">
+                <a className="text-xs" style={{ color: "oklch(0.62 0.22 355)" }}>
+                  一覧へ →
+                </a>
+              </Link>
             </div>
             <div className="flex flex-wrap gap-2">
               {genres.slice(0, 5).map((g) => (
-                <button
-                  key={g.id}
-                  className="tag-chip hover:bg-pink-100 transition-colors btn-press"
-                  onClick={() => toast(`「${g.name}」ジャンルページは準備中です`)}
-                >
-                  {g.name}
-                </button>
+                <Link key={g.id} href="/genres">
+                  <a className="tag-chip hover:bg-pink-100 transition-colors btn-press">
+                    {g.name}
+                  </a>
+                </Link>
               ))}
             </div>
           </div>

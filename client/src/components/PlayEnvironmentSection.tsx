@@ -4,7 +4,7 @@
 // Amazon欄ではなくプレイ環境おすすめ、複数ASP対応構造
 import { environmentItems, EnvironmentItem } from "@/data/mockData";
 import SectionHeader from "./SectionHeader";
-import { toast } from "sonner";
+import { Link } from "wouter";
 
 function EnvCard({ item }: { item: EnvironmentItem }) {
   return (
@@ -39,13 +39,12 @@ function EnvCard({ item }: { item: EnvironmentItem }) {
         <p className="text-sm font-extrabold" style={{ color: "oklch(0.18 0.03 310)" }}>
           {item.price}
         </p>
-        <button
-          className="w-full py-1.5 rounded-lg text-[10px] font-semibold border transition-colors hover:bg-pink-50 btn-press"
-          style={{ borderColor: "oklch(0.62 0.22 355)", color: "oklch(0.62 0.22 355)" }}
-          onClick={() => toast(`「${item.title}」の詳細ページは準備中です`)}
-        >
-          詳細を見る
-        </button>
+        <Link href="/environment">
+          <a className="w-full py-1.5 rounded-lg text-[10px] font-semibold border transition-colors hover:bg-pink-50 btn-press block text-center"
+            style={{ borderColor: "oklch(0.62 0.22 355)", color: "oklch(0.62 0.22 355)" }}>
+            詳細を見る
+          </a>
+        </Link>
       </div>
     </div>
   );
@@ -59,7 +58,7 @@ export default function PlayEnvironmentSection() {
           icon="🎮"
           title="快適プレイ環境のおすすめ"
           subtitle="管理人が実際に使っているアイテムを中心に紹介！"
-          moreHref="#"
+          moreHref="/environment"
         />
 
         {/* ===== PC: グリッド + 右サイドカード ===== */}
@@ -82,26 +81,23 @@ export default function PlayEnvironmentSection() {
               { title: "深夜プレイにおすすめアイテム", sub: "静かで快適な環境をつくる" },
               { title: "ASMR最適ヘッドホン特集", sub: "没入感が段違い！" },
             ].map((f) => (
-              <button
-                key={f.title}
-                className="flex items-start gap-2 p-2 rounded-lg bg-white border text-left hover:bg-pink-50 transition-colors"
-                style={{ borderColor: "oklch(0.92 0.02 355)" }}
-                onClick={() => toast(`「${f.title}」は準備中です`)}
-              >
-                <div className="w-10 h-9 rounded-md shrink-0" style={{ background: "oklch(0.94 0.03 355)" }} />
-                <div>
-                  <p className="text-[11px] font-semibold leading-snug" style={{ color: "oklch(0.18 0.03 310)" }}>{f.title}</p>
-                  <p className="text-[9px] mt-0.5" style={{ color: "oklch(0.55 0.04 310)" }}>{f.sub}</p>
-                </div>
-              </button>
+              <Link key={f.title} href="/environment">
+                <a className="flex items-start gap-2 p-2 rounded-lg bg-white border text-left hover:bg-pink-50 transition-colors"
+                  style={{ borderColor: "oklch(0.92 0.02 355)" }}>
+                  <div className="w-10 h-9 rounded-md shrink-0" style={{ background: "oklch(0.94 0.03 355)" }} />
+                  <div>
+                    <p className="text-[11px] font-semibold leading-snug" style={{ color: "oklch(0.18 0.03 310)" }}>{f.title}</p>
+                    <p className="text-[9px] mt-0.5" style={{ color: "oklch(0.55 0.04 310)" }}>{f.sub}</p>
+                  </div>
+                </a>
+              </Link>
             ))}
-            <button
-              className="mt-1 w-full py-2 rounded-lg text-xs font-bold text-white btn-press"
-              style={{ background: "oklch(0.62 0.22 355)" }}
-              onClick={() => toast("特集ページは準備中です")}
-            >
-              特集ページを見る
-            </button>
+            <Link href="/features">
+              <a className="mt-1 w-full py-2 rounded-lg text-xs font-bold text-white btn-press block text-center"
+                style={{ background: "oklch(0.62 0.22 355)" }}>
+                特集ページを見る
+              </a>
+            </Link>
           </div>
         </div>
 

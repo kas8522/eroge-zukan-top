@@ -1,10 +1,99 @@
 // PC: 左にメイン画像・右に情報 / スマホ: 縦積み
 import { gameDetails, environmentItems } from "@/data/mockData";
+import { fanzaProducts, type FanzaProduct } from "@/data/fanzaProducts";
 import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 import { Heart, Star } from "lucide-react";
 import { toast } from "sonner";
 import { Link, useRoute } from "wouter";
 import { useEffect, useMemo } from "react";
+
+type DisplayGameDetail = {
+  fanzaOnly: boolean;
+  priceLabel: string;
+  detail: (typeof gameDetails)[number];
+};
+
+function parseFanzaPrice(price?: string): number {
+  const match = price?.match(/(\d+)/);
+  return match ? parseInt(match[1], 10) : 0;
+}
+
+function formatFanzaReleaseDate(releaseDate?: string): string {
+  if (!releaseDate) return "未定";
+  return releaseDate.split(" ")[0].replace(/-/g, "/");
+}
+
+function formatPriceLabel(price?: string, fallbackNumber?: number): string {
+  if (price?.trim()) return price.trim();
+  if (fallbackNumber && fallbackNumber > 0) return `¥${fallbackNumber.toLocaleString()}`;
+  return "価格未定";
+}
+
+function buildDetailFromFanzaProduct(gameId: number, product: FanzaProduct): DisplayGameDetail["detail"] {
+  const thumbnail = product.thumbnail ?? "";
+  const price = parseFanzaPrice(product.price);
+
+  return {
+    id: gameId,
+    title: product.title,
+    maker: product.maker ?? "—",
+    releaseDate: formatFanzaReleaseDate(product.releaseDate),
+    price,
+    rating: 0,
+    ratingCount: 0,
+    genres: product.genres ?? [],
+    description: "FANZA掲載の作品情報です。詳細はFANZAの商品ページでご確認ください。",
+    thumbnail,
+    mainImage: thumbnail,
+    imageUrl: thumbnail,
+    sampleImages: thumbnail ? [thumbnail] : [],
+    galleryImages: thumbnail ? [thumbnail] : [],
+    adminReview:
+      "FANZAの商品情報をもとに掲載しています。価格・収録内容・対応環境などの最新情報は、FANZAの商品ページでご確認ください。",
+    recommendedFor:
+      product.genres.length > 0
+        ? [`「${product.genres[0]}」などのジャンルに興味がある方`]
+        : ["FANZAで新作・人気作を探している方"],
+    notRecommendedFor: [],
+    ratings: { character: 0, animation: 0, atmosphere: 0, value: 0 },
+    relatedWorks: [],
+    similarGenreWorks: [],
+    fanzaUrl: product.affiliateUrl,
+    dlsiteUrl: "",
+    sampleUrl: product.productUrl,
+  };
+}
+
+function resolveGamePage(gameId: number): DisplayGameDetail | null {
+  if (!Number.isFinite(gameId) || gameId < 1) {
+    return null;
+  }
+
+  const mockDetail = gameDetails.find((g) => g.id === gameId);
+  const fanzaProduct = fanzaProducts[gameId - 1];
+
+  if (mockDetail) {
+    return {
+      fanzaOnly: false,
+      priceLabel: formatPriceLabel(undefined, mockDetail.price),
+      detail: {
+        ...mockDetail,
+        fanzaUrl: fanzaProduct?.affiliateUrl ?? mockDetail.fanzaUrl,
+      },
+    };
+  }
+
+  if (fanzaProduct) {
+    const detail = buildDetailFromFanzaProduct(gameId, fanzaProduct);
+    return {
+      fanzaOnly: true,
+      priceLabel: formatPriceLabel(fanzaProduct.price, detail.price),
+      detail,
+    };
+  }
+
+  return null;
+}
 
 function RatingBar({ label, value }: { label: string; value: number }) {
   return (
@@ -21,6 +110,12 @@ function RatingBar({ label, value }: { label: string; value: number }) {
       </span>
     </div>
   );
+}
+
+function hasExternalUrl(href?: string): boolean {
+  if (!href) return false;
+  const trimmed = href.trim();
+  return trimmed.length > 0 && trimmed !== "#";
 }
 
 function CTAButton({ label, onClick, isPrimary = false }: { label: string; onClick: () => void; isPrimary?: boolean }) {
@@ -135,21 +230,62 @@ function EnvCard({ item }: { item: typeof environmentItems[0] }) {
 
 export default function GameDetail() {
   const [, params] = useRoute("/game/:id");
-  const gameId = params?.id ? parseInt(params.id, 10) : 1;
+  const gameId = params?.id ? parseInt(params.id, 10) : NaN;
 
-  // URLパラメータに基づいて正しい作品データを取得
-  const gameDetail = useMemo(() => {
-    const detail = gameDetails.find(g => g.id === gameId);
-    return detail || gameDetails[0];
-  }, [gameId]);
+  const page = useMemo(() => resolveGamePage(gameId), [gameId]);
 
-  const mainImage = gameDetail.imageUrl ?? gameDetail.mainImage;
-  const galleryImages = gameDetail.galleryImages ?? gameDetail.sampleImages;
-
-  // ページ遷移時にスクロール位置をリセット
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [gameId]);
+
+  if (!page) {
+    return (
+      <div className="min-h-screen flex flex-col" style={{ background: "oklch(0.992 0.006 355)" }}>
+        <header className="bg-white border-b sticky top-0 z-40" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
+          <div className="container h-14 flex items-center">
+            <Link href="/" className="text-lg font-bold hover:opacity-80" style={{ color: "oklch(0.18 0.03 310)" }}>
+              ← エロゲ図鑑に戻る
+            </Link>
+          </div>
+        </header>
+        <AffiliateDisclosure />
+        <main className="flex-1 container py-16">
+          <div className="max-w-lg mx-auto bg-white rounded-2xl border p-8 text-center" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
+            <h1 className="text-xl font-bold mb-3" style={{ color: "oklch(0.18 0.03 310)" }}>
+              商品が見つかりません
+            </h1>
+            <p className="text-sm mb-6" style={{ color: "oklch(0.55 0.04 310)" }}>
+              お探しの作品は掲載されていないか、URLが正しくない可能性があります。
+            </p>
+            <div className="flex flex-wrap gap-2 justify-center">
+              <Link href="/">
+                <a className="inline-block bg-pink-600 hover:bg-pink-700 text-white font-medium px-4 py-2 rounded text-sm">
+                  トップへ戻る
+                </a>
+              </Link>
+              <Link href="/ranking">
+                <a className="inline-block bg-gray-100 hover:bg-gray-200 text-gray-900 font-medium px-4 py-2 rounded text-sm">
+                  ランキングを見る
+                </a>
+              </Link>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  const { detail: gameDetail, fanzaOnly, priceLabel } = page;
+  const mainImage = gameDetail.imageUrl ?? gameDetail.mainImage;
+  const galleryImages = gameDetail.galleryImages ?? gameDetail.sampleImages;
+  const showRating = gameDetail.rating > 0;
+  const showRatingBars =
+    !fanzaOnly &&
+    (gameDetail.ratings.character > 0 ||
+      gameDetail.ratings.animation > 0 ||
+      gameDetail.ratings.atmosphere > 0 ||
+      gameDetail.ratings.value > 0);
+  const showGallery = galleryImages.length > 0 && (!fanzaOnly || galleryImages.length > 1);
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: "oklch(0.992 0.006 355)" }}>
@@ -175,6 +311,7 @@ export default function GameDetail() {
                 <img src={mainImage} alt={gameDetail.title} className="absolute inset-0 w-full h-full object-cover object-center" loading="lazy" />
               </div>
               {/* サンプル画像ギャラリー */}
+              {showGallery && (
               <div>
                 <h3 className="text-sm font-bold mb-3" style={{ color: "oklch(0.18 0.03 310)" }}>サンプル画像</h3>
                 <div className="grid grid-cols-3 gap-2">
@@ -186,6 +323,7 @@ export default function GameDetail() {
                   ))}
                 </div>
               </div>
+              )}
             </div>
 
             {/* 右: 情報カード */}
@@ -206,10 +344,11 @@ export default function GameDetail() {
                 {!gameDetail.brand && <div className="mb-3" />}
                 <div className="flex items-center justify-between text-sm mb-4 pb-4 border-b" style={{ color: "oklch(0.55 0.04 310)", borderColor: "oklch(0.92 0.02 355)" }}>
                   <span>発売日: {gameDetail.releaseDate}</span>
-                  <span className="font-bold text-lg" style={{ color: "oklch(0.62 0.22 355)" }}>¥{gameDetail.price.toLocaleString()}</span>
+                  <span className="font-bold text-lg" style={{ color: "oklch(0.62 0.22 355)" }}>{priceLabel}</span>
                 </div>
 
                 {/* 評価 */}
+                {showRating && (
                 <div className="flex items-center gap-2 mb-4">
                   <div className="flex items-center gap-1">
                     {[...Array(5)].map((_, i) => (
@@ -228,6 +367,7 @@ export default function GameDetail() {
                     ({gameDetail.ratingCount.toLocaleString()}件)
                   </span>
                 </div>
+                )}
 
                 {/* ジャンルタグ */}
                 <div className="flex flex-wrap gap-2">
@@ -244,8 +384,12 @@ export default function GameDetail() {
                 <p className="text-xs font-bold mb-3" style={{ color: "oklch(0.55 0.04 310)" }}>この作品を購入</p>
                 <div className="flex flex-col gap-2.5">
                   <CTAExternalLink label="FANZAで見る" href={gameDetail.fanzaUrl} isPrimary />
-                  <CTAExternalLink label="DLsiteで見る" href={gameDetail.dlsiteUrl} isPrimary />
-                  <CTAExternalLink label="サンプルを見る" href={gameDetail.sampleUrl} />
+                  {hasExternalUrl(gameDetail.dlsiteUrl) && (
+                    <CTAExternalLink label="DLsiteで見る" href={gameDetail.dlsiteUrl} isPrimary />
+                  )}
+                  {hasExternalUrl(gameDetail.sampleUrl) && (
+                    <CTAExternalLink label="サンプルを見る" href={gameDetail.sampleUrl} />
+                  )}
                 </div>
               </div>
 
@@ -270,6 +414,7 @@ export default function GameDetail() {
               </div>
 
               {/* 合わないかも */}
+              {gameDetail.notRecommendedFor.length > 0 && (
               <div className="bg-white rounded-xl border p-5" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
                 <p className="text-xs font-bold mb-2" style={{ color: "oklch(0.18 0.03 310)" }}>❌ こんな人には合わないかも</p>
                 <ul className="space-y-1.5">
@@ -280,8 +425,10 @@ export default function GameDetail() {
                   ))}
                 </ul>
               </div>
+              )}
 
               {/* 評価項目 */}
+              {showRatingBars && (
               <div className="bg-white rounded-xl border p-5" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
                 <p className="text-xs font-bold mb-3" style={{ color: "oklch(0.18 0.03 310)" }}>⭐ 評価</p>
                 <div className="space-y-2.5">
@@ -291,6 +438,7 @@ export default function GameDetail() {
                   <RatingBar label="コスパ" value={gameDetail.ratings.value} />
                 </div>
               </div>
+              )}
             </div>
 
           </div>
@@ -319,7 +467,7 @@ export default function GameDetail() {
               <div className="flex items-center justify-between text-xs mb-3 pb-3 border-b" style={{ color: "oklch(0.55 0.04 310)", borderColor: "oklch(0.92 0.02 355)" }}>
                 <span>{gameDetail.releaseDate}</span>
                 <span className="font-bold text-base" style={{ color: "oklch(0.62 0.22 355)" }}>
-                  ¥{gameDetail.price.toLocaleString()}
+                  {priceLabel}
                 </span>
               </div>
 
@@ -333,6 +481,7 @@ export default function GameDetail() {
               </div>
 
               {/* 評価 */}
+              {showRating && (
               <div className="flex items-center gap-2">
                 <div className="flex items-center gap-0.5">
                   {[...Array(5)].map((_, i) => (
@@ -351,6 +500,7 @@ export default function GameDetail() {
                   ({gameDetail.ratingCount.toLocaleString()}件)
                 </span>
               </div>
+              )}
             </div>
 
             {/* CTAボタン - 目立つ位置に配置 */}
@@ -358,8 +508,12 @@ export default function GameDetail() {
               <p className="text-xs font-bold mb-3" style={{ color: "oklch(0.55 0.04 310)" }}>この作品を購入</p>
               <div className="flex flex-col gap-2">
                 <CTAExternalLink label="FANZAで見る" href={gameDetail.fanzaUrl} isPrimary />
-                <CTAExternalLink label="DLsiteで見る" href={gameDetail.dlsiteUrl} isPrimary />
-                <CTAExternalLink label="サンプルを見る" href={gameDetail.sampleUrl} />
+                {hasExternalUrl(gameDetail.dlsiteUrl) && (
+                  <CTAExternalLink label="DLsiteで見る" href={gameDetail.dlsiteUrl} isPrimary />
+                )}
+                {hasExternalUrl(gameDetail.sampleUrl) && (
+                  <CTAExternalLink label="サンプルを見る" href={gameDetail.sampleUrl} />
+                )}
               </div>
             </div>
 
@@ -384,6 +538,7 @@ export default function GameDetail() {
             </div>
 
             {/* 合わないかも */}
+            {gameDetail.notRecommendedFor.length > 0 && (
             <div className="bg-white rounded-xl border p-4" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
               <p className="text-xs font-bold mb-2" style={{ color: "oklch(0.18 0.03 310)" }}>❌ こんな人には合わないかも</p>
               <ul className="space-y-1">
@@ -394,8 +549,10 @@ export default function GameDetail() {
                 ))}
               </ul>
             </div>
+            )}
 
             {/* 評価項目 */}
+            {showRatingBars && (
             <div className="bg-white rounded-xl border p-4" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
               <p className="text-xs font-bold mb-3" style={{ color: "oklch(0.18 0.03 310)" }}>⭐ 評価</p>
               <div className="space-y-2">
@@ -405,8 +562,10 @@ export default function GameDetail() {
                 <RatingBar label="コスパ" value={gameDetail.ratings.value} />
               </div>
             </div>
+            )}
 
             {/* サンプル画像ギャラリー */}
+            {showGallery && (
             <div>
               <h3 className="text-xs font-bold mb-2" style={{ color: "oklch(0.18 0.03 310)" }}>サンプル画像</h3>
               <div className="grid grid-cols-2 gap-2">
@@ -418,9 +577,11 @@ export default function GameDetail() {
                 ))}
               </div>
             </div>
+            )}
           </div>
 
           {/* ===== 関連作品セクション（PC/スマホ共通） ===== */}
+          {gameDetail.relatedWorks.length > 0 && (
           <section className="mb-12">
             <h2 className="text-lg font-bold mb-4" style={{ color: "oklch(0.18 0.03 310)" }}>この作品が気になる人におすすめ</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -429,8 +590,10 @@ export default function GameDetail() {
               ))}
             </div>
           </section>
+          )}
 
           {/* ===== 同じジャンルの人気作セクション ===== */}
+          {gameDetail.similarGenreWorks.length > 0 && (
           <section className="mb-12">
             <h2 className="text-lg font-bold mb-4" style={{ color: "oklch(0.18 0.03 310)" }}>同じジャンルの人気作</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -439,6 +602,7 @@ export default function GameDetail() {
               ))}
             </div>
           </section>
+          )}
 
           {/* ===== この作品を快適に楽しむなら ===== */}
           <section className="mb-12">

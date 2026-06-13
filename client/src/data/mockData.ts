@@ -30,7 +30,7 @@ export const heroSlides: HeroSlide[] = [
     label: "今月のイチオシ！",
     labelType: "pickup",
     thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800&q=80",
-    href: "#",
+    href: "/game/1",
   },
   {
     id: 2,
@@ -42,7 +42,7 @@ export const heroSlides: HeroSlide[] = [
     label: "新作",
     labelType: "new",
     thumbnail: "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=800&q=80",
-    href: "#",
+    href: "/game/2",
   },
   {
     id: 3,
@@ -54,7 +54,7 @@ export const heroSlides: HeroSlide[] = [
     label: "注目作",
     labelType: "pickup",
     thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80",
-    href: "#",
+    href: "/game/4",
   },
 ];
 
@@ -69,9 +69,9 @@ export interface Notice {
 }
 
 export const notices: Notice[] = [
-  { id: 1, date: "05/24", text: "新作レビューを追加しました", href: "#" },
-  { id: 2, date: "05/23", text: "ランキングを更新しました", href: "#" },
-  { id: 3, date: "05/22", text: "特集ページを公開しました", href: "#" },
+  { id: 1, date: "05/24", text: "新作レビューを追加しました", href: "/reviews" },
+  { id: 2, date: "05/23", text: "ランキングを更新しました", href: "/ranking" },
+  { id: 3, date: "05/22", text: "特集ページを公開しました", href: "/features" },
 ];
 
 export const adminNote = "今月は注目の新作が多めです！週末にじっくり遊ぶ作品を探している方はぜひランキングもチェックしてみてください。";
@@ -79,7 +79,7 @@ export const adminNote = "今月は注目の新作が多めです！週末にじ
 /** game id:1（催眠術4 / FANZA next_0264）用プレースホルダー画像 */
 const GAME1_PLACEHOLDER = {
   imageNote:
-    "※ 掲載画像はイメージ用の仮画像です。実際のパッケージ・キャプチャとは異なります。FANZAアフィリエイト素材で差し替え予定。",
+    "※ 掲載画像は紹介用のイメージです。最新のパッケージ画像は各ストアページでご確認ください。",
   thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80",
   mainImage: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800&q=80",
   gallery: [
@@ -123,7 +123,7 @@ export const newReleases: GameCard[] = [
     description: "もっと近くに、もっと遠く。ドキドキが止まらない！",
     label: "イチャラブの極み",
     labelType: "pickup",
-    href: "#",
+    href: "/game/2",
   },
   {
     id: 3,
@@ -134,7 +134,7 @@ export const newReleases: GameCard[] = [
     description: "笑って泣いて、たまにえっち。テンポ最強コメディ！",
     label: "駄天使に悩まされる",
     labelType: "special",
-    href: "#",
+    href: "/game/3",
   },
   {
     id: 4,
@@ -145,7 +145,7 @@ export const newReleases: GameCard[] = [
     description: "切なくて優しい。心に残る物語。",
     label: "純愛・必泣",
     labelType: "pickup",
-    href: "#",
+    href: "/game/4",
   },
   {
     id: 5,
@@ -156,11 +156,9 @@ export const newReleases: GameCard[] = [
     description: "個性的なキャラが織りなす、笑いと恋の物語。",
     label: "個性派揃い",
     labelType: "pickup",
-    href: "#",
+    href: "/game/5",
   },
 ];
-
-// セール
 
 // 環境・アイテム
 export type DoujinBadge = "同人" | "低価格" | "短時間" | "セール中" | "スマホ対応" | "ブラウザ対応" | "手軽";
@@ -333,7 +331,7 @@ export const gameDetails: GameDetail[] = [
       { id: 3, title: "天使・緑々 RE-BOOT!", thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=200&q=80", maker: "ゆずソフト" },
     ],
     fanzaUrl: "#",
-    dlsiteUrl: "#",
+    dlsiteUrl: "",
     sampleUrl: "#",
   },
   {
@@ -380,7 +378,7 @@ export const gameDetails: GameDetail[] = [
       { id: 2, title: "アマカノ2", thumbnail: "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=200&q=80", maker: "あざらしそふと" },
     ],
     fanzaUrl: "#",
-    dlsiteUrl: "#",
+    dlsiteUrl: "",
     sampleUrl: "#",
   },
   {
@@ -427,7 +425,7 @@ export const gameDetails: GameDetail[] = [
       { id: 5, title: "ハミダククリエイティブプラス", thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=200&q=80", maker: "まどそふと" },
     ],
     fanzaUrl: "#",
-    dlsiteUrl: "#",
+    dlsiteUrl: "",
     sampleUrl: "#",
   },
   {
@@ -472,7 +470,7 @@ export const gameDetails: GameDetail[] = [
       { id: 2, title: "アマカノ2", thumbnail: "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=200&q=80", maker: "あざらしそふと" },
     ],
     fanzaUrl: "#",
-    dlsiteUrl: "#",
+    dlsiteUrl: "",
     sampleUrl: "#",
   },
 ];
@@ -992,7 +990,7 @@ export const environmentProducts: EnvironmentProduct[] = [
     description: "長時間のゲームプレイに最適な人間工学設計の高機能チェア。腰痛対策に。",
     recommendedFor: "長時間ADV・ノベルゲームをプレイする人",
     affiliateProvider: "amazon",
-    href: "#",
+    href: "",
   },
   {
     id: 2,
@@ -1003,7 +1001,7 @@ export const environmentProducts: EnvironmentProduct[] = [
     description: "音声作品や深夜プレイ向け。音の細かさを楽しみたい人に。",
     recommendedFor: "ASMR・音声作品をよく聴く人",
     affiliateProvider: "amazon",
-    href: "#",
+    href: "",
   },
   {
     id: 3,
@@ -1014,7 +1012,7 @@ export const environmentProducts: EnvironmentProduct[] = [
     description: "深夜プレイでも目に優しい。ブルーライト軽減で睡眠を妨げない。",
     recommendedFor: "深夜にゲームをプレイする人",
     affiliateProvider: "amazon",
-    href: "#",
+    href: "",
   },
   {
     id: 4,
@@ -1025,7 +1023,7 @@ export const environmentProducts: EnvironmentProduct[] = [
     description: "高精度マウス。長時間使用でも疲れにくい。ゲームプレイの快適性向上。",
     recommendedFor: "PC周りを整えたい人",
     affiliateProvider: "amazon",
-    href: "#",
+    href: "",
   },
   {
     id: 5,
@@ -1036,7 +1034,7 @@ export const environmentProducts: EnvironmentProduct[] = [
     description: "同人ゲーム・ノベルゲームを大画面で楽しめる。寝転びプレイに最適。",
     recommendedFor: "同人ゲーム・スマホゲームをよくプレイする人",
     affiliateProvider: "amazon",
-    href: "#",
+    href: "",
   },
   {
     id: 6,
@@ -1047,7 +1045,7 @@ export const environmentProducts: EnvironmentProduct[] = [
     description: "大容量モバイルバッテリー。長時間のゲームプレイも安心。",
     recommendedFor: "スマホでゲームをよくプレイする人",
     affiliateProvider: "amazon",
-    href: "#",
+    href: "",
   },
   {
     id: 7,
@@ -1058,7 +1056,7 @@ export const environmentProducts: EnvironmentProduct[] = [
     description: "スマートLEDライト。色温度を自由に調整。深夜プレイに最適。",
     recommendedFor: "深夜プレイ・配信環境を整えたい人",
     affiliateProvider: "amazon",
-    href: "#",
+    href: "",
   },
   {
     id: 8,
@@ -1069,7 +1067,7 @@ export const environmentProducts: EnvironmentProduct[] = [
     description: "高級ヘッドホン。音声作品の細かなニュアンスを完全に再現。",
     recommendedFor: "音質にこだわる人・ASMR好きな人",
     affiliateProvider: "amazon",
-    href: "#",
+    href: "",
   },
   {
     id: 9,
@@ -1080,7 +1078,7 @@ export const environmentProducts: EnvironmentProduct[] = [
     description: "ワイヤレスメカニカルキーボード。静音性に優れ、深夜プレイに最適。",
     recommendedFor: "深夜プレイ・PC周りを整えたい人",
     affiliateProvider: "amazon",
-    href: "#",
+    href: "",
   },
   {
     id: 10,
@@ -1091,7 +1089,7 @@ export const environmentProducts: EnvironmentProduct[] = [
     description: "27インチ高リフレッシュレートモニター。ゲーム画面が美しく見える。",
     recommendedFor: "PC周りを整えたい人・画質にこだわる人",
     affiliateProvider: "amazon",
-    href: "#",
+    href: "",
   },
   {
     id: 11,
@@ -1102,7 +1100,7 @@ export const environmentProducts: EnvironmentProduct[] = [
     description: "高性能CPUクーラー。PC温度を下げ、安定したプレイ環境を実現。",
     recommendedFor: "PC周りを整えたい人・長時間プレイする人",
     affiliateProvider: "amazon",
-    href: "#",
+    href: "",
   },
   {
     id: 12,
@@ -1113,7 +1111,7 @@ export const environmentProducts: EnvironmentProduct[] = [
     description: "コンパクトなモバイルバッテリー。持ち運びに最適。",
     recommendedFor: "スマホゲームをよくプレイする人",
     affiliateProvider: "amazon",
-    href: "#",
+    href: "",
   },
 ];
 
@@ -1358,7 +1356,7 @@ export const features: Feature[] = [
     tags: ["初心者向け", "純愛", "学園"],
     itemCount: 10,
     updatedAt: "2024/05/28",
-    href: "#",
+    href: "/features/beginner",
     relatedGameIds: [1, 3, 8],
   },
   {
@@ -1369,7 +1367,7 @@ export const features: Feature[] = [
     tags: ["セール", "高評価", "期間限定"],
     itemCount: 12,
     updatedAt: "2024/05/27",
-    href: "#",
+    href: "/features/sale-low-price",
     relatedGameIds: [2, 6, 7],
   },
   {
@@ -1380,7 +1378,7 @@ export const features: Feature[] = [
     tags: ["同人ゲーム", "低価格", "短時間"],
     itemCount: 8,
     updatedAt: "2024/05/26",
-    href: "#",
+    href: "/doujin",
     relatedGameIds: [5, 8],
   },
   {
@@ -1391,7 +1389,7 @@ export const features: Feature[] = [
     tags: ["Live2D", "アニメーション", "キャラ重視"],
     itemCount: 9,
     updatedAt: "2024/05/25",
-    href: "#",
+    href: "/ranking",
     relatedGameIds: [1, 4, 10],
   },
   {
@@ -1402,8 +1400,19 @@ export const features: Feature[] = [
     tags: ["泣きゲー", "雰囲気", "シナリオ"],
     itemCount: 7,
     updatedAt: "2024/05/24",
-    href: "#",
+    href: "/reviews",
     relatedGameIds: [2, 9],
+  },
+  {
+    id: 6,
+    title: "エロゲランキングの見方",
+    description: "人気ランキングを読み解いて、自分に合う作品を選ぶためのガイド。",
+    thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500&q=80",
+    tags: ["ランキング", "初心者向け", "選び方"],
+    itemCount: 3,
+    updatedAt: "2026/06/08",
+    href: "/features/ranking",
+    relatedGameIds: [1, 2],
   },
 ];
 
@@ -1757,7 +1766,7 @@ export const makers: Maker[] = [
     tags: ["純愛", "学園", "キャラ重視"],
     itemCount: 12,
     representativeGameIds: [1, 3, 5],
-    href: "#",
+    href: "/game/1",
   },
   {
     id: 2,
@@ -1769,7 +1778,7 @@ export const makers: Maker[] = [
     tags: ["ファンタジー", "個性的", "高評価"],
     itemCount: 8,
     representativeGameIds: [2, 4, 7],
-    href: "#",
+    href: "/game/2",
   },
   {
     id: 3,
@@ -1781,7 +1790,7 @@ export const makers: Maker[] = [
     tags: ["同人", "高クオリティ", "セール中"],
     itemCount: 5,
     representativeGameIds: [6, 8, 10],
-    href: "#",
+    href: "/game/6",
   },
   {
     id: 4,
@@ -1793,7 +1802,7 @@ export const makers: Maker[] = [
     tags: ["同人", "低価格", "初心者向け"],
     itemCount: 6,
     representativeGameIds: [1, 2, 3],
-    href: "#",
+    href: "/game/1",
   },
   {
     id: 5,
@@ -1805,7 +1814,7 @@ export const makers: Maker[] = [
     tags: ["Live2D", "アニメーション", "高評価"],
     itemCount: 10,
     representativeGameIds: [4, 5, 9],
-    href: "#",
+    href: "/game/4",
   },
   {
     id: 6,
@@ -1817,7 +1826,7 @@ export const makers: Maker[] = [
     tags: ["シナリオ", "泣きゲー", "感動"],
     itemCount: 7,
     representativeGameIds: [7, 8, 10],
-    href: "#",
+    href: "/game/7",
   },
   {
     id: 7,
@@ -1829,7 +1838,7 @@ export const makers: Maker[] = [
     tags: ["同人", "短編", "短時間"],
     itemCount: 4,
     representativeGameIds: [1, 3, 6],
-    href: "#",
+    href: "/game/1",
   },
   {
     id: 8,
@@ -1841,7 +1850,7 @@ export const makers: Maker[] = [
     tags: ["同人", "音楽", "シナリオ"],
     itemCount: 3,
     representativeGameIds: [2, 5, 9],
-    href: "#",
+    href: "/game/2",
   },
 ];
 

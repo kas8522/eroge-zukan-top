@@ -4,7 +4,7 @@
 // バッジ: 同人/低価格/短時間/セール中/手軽 など
 // 白ベース・ピンクアクセント・カード型UI維持
 import { doujinGames, DoujinGame, DoujinBadge } from "@/data/mockData";
-import { toast } from "sonner";
+import { Link } from "wouter";
 
 // バッジの色分け
 const badgeStyle: Record<DoujinBadge, string> = {
@@ -78,13 +78,12 @@ function DoujinCard({ item }: { item: DoujinGame }) {
         </p>
 
         {/* ボタン */}
-        <button
-          className="mt-auto w-full py-1.5 rounded-lg text-[10px] font-semibold border transition-colors hover:bg-pink-50 btn-press"
-          style={{ borderColor: "oklch(0.62 0.22 355)", color: "oklch(0.62 0.22 355)" }}
-          onClick={() => toast(`「${item.title}」の詳細ページは準備中です`)}
-        >
-          詳細を見る
-        </button>
+        <Link href={item.href}>
+          <a className="mt-auto w-full py-1.5 rounded-lg text-[10px] font-semibold border transition-colors hover:bg-pink-50 btn-press block text-center"
+            style={{ borderColor: "oklch(0.62 0.22 355)", color: "oklch(0.62 0.22 355)" }}>
+            詳細を見る
+          </a>
+        </Link>
       </div>
     </div>
   );
@@ -106,13 +105,12 @@ export default function DoujinSection() {
               低価格で手軽に遊びやすい、注目の同人ゲームをピックアップ。
             </p>
           </div>
-          <button
-            className="text-xs font-medium flex items-center gap-0.5 hover:underline shrink-0 btn-press"
-            style={{ color: "oklch(0.62 0.22 355)" }}
-            onClick={() => toast("同人ゲーム一覧ページは準備中です")}
-          >
-            同人ゲームをもっと見る →
-          </button>
+          <Link href="/doujin">
+            <a className="text-xs font-medium flex items-center gap-0.5 hover:underline shrink-0 btn-press"
+              style={{ color: "oklch(0.62 0.22 355)" }}>
+              同人ゲームをもっと見る →
+            </a>
+          </Link>
         </div>
 
         {/* ===== PC: 4列グリッド ===== */}
@@ -138,13 +136,12 @@ export default function DoujinSection() {
 
         {/* 下部CTA */}
         <div className="mt-4 text-center">
-          <button
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold border btn-press transition-colors hover:bg-blue-50"
-            style={{ borderColor: "oklch(0.55 0.18 250)", color: "oklch(0.45 0.18 250)" }}
-            onClick={() => toast("同人ゲーム一覧ページは準備中です")}
-          >
-            💎 同人ゲームをもっと見る
-          </button>
+          <Link href="/doujin">
+            <a className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold border btn-press transition-colors hover:bg-blue-50"
+              style={{ borderColor: "oklch(0.55 0.18 250)", color: "oklch(0.45 0.18 250)" }}>
+              💎 同人ゲームをもっと見る
+            </a>
+          </Link>
         </div>
       </div>
     </section>

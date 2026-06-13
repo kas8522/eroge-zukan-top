@@ -1,7 +1,6 @@
 // FollowCTA.tsx
 // デザイン: ピンク系淡い背景、Xフォロー・更新情報導線（会員登録なし）
 import { Mail, Twitter } from "lucide-react";
-import { toast } from "sonner";
 
 export default function FollowCTA() {
   return (
@@ -29,20 +28,22 @@ export default function FollowCTA() {
           {/* ボタン群 */}
           <div className="flex flex-col sm:flex-row gap-3">
             <button
-              className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white btn-press transition-opacity hover:opacity-90"
+              type="button"
+              disabled
+              className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white opacity-60 cursor-not-allowed"
               style={{ background: "oklch(0.18 0.03 310)" }}
-              onClick={() => toast("Twitterフォロー機能は準備中です")}
             >
               <Twitter className="w-4 h-4" />
-              X（Twitter）をフォロー
+              X（Twitter）をフォロー（準備中）
             </button>
             <button
-              className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white btn-press transition-opacity hover:opacity-90"
+              type="button"
+              disabled
+              className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white opacity-60 cursor-not-allowed"
               style={{ background: "oklch(0.62 0.22 355)" }}
-              onClick={() => toast("メルマガ登録機能は準備中です")}
             >
               <Mail className="w-4 h-4" />
-              更新情報を受け取る
+              更新情報を受け取る（準備中）
             </button>
           </div>
         </div>

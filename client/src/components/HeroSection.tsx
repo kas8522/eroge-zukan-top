@@ -4,7 +4,7 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, Heart, Bell, Gamepad2, Twitter } from "lucide-react";
 import { heroSlides, rankingItems, notices, adminNote } from "@/data/mockData";
-import { toast } from "sonner";
+import { Link } from "wouter";
 
 export default function HeroSection() {
   const [current, setCurrent] = useState(0);
@@ -88,16 +88,16 @@ export default function HeroSection() {
               <h3 className="section-title text-sm">
                 <span>🔥</span> 人気ランキング
               </h3>
-              <a href="#" className="text-xs shrink-0" style={{ color: "oklch(0.62 0.22 355)" }}
-                onClick={(e) => { e.preventDefault(); toast("ランキングページは準備中です"); }}>
-                見る →
-              </a>
+              <Link href="/ranking">
+                <a className="text-xs shrink-0" style={{ color: "oklch(0.62 0.22 355)" }}>
+                  見る →
+                </a>
+              </Link>
             </div>
             <div className="divide-y divide-pink-50/80">
-              {rankingItems.map((item: any) => (
-                <a key={item.rank} href={item.href}
-                  className="flex items-center gap-2 px-3 py-2 hover:bg-pink-50/40 transition-colors"
-                  onClick={(e) => { e.preventDefault(); toast(`「${item.title}」は準備中です`); }}>
+              {rankingItems.map((item) => (
+                <Link key={item.rank} href={`/game/${item.id}`}>
+                  <a className="flex items-center gap-2 px-3 py-2 hover:bg-pink-50/40 transition-colors">
                   <span className="w-5 text-center font-extrabold text-sm shrink-0"
                     style={{
                       color: item.rank === 1 ? "#e8a000"
@@ -121,7 +121,8 @@ export default function HeroSection() {
                       {item.likes.toLocaleString()}
                     </span>
                   </div>
-                </a>
+                  </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -142,17 +143,20 @@ export default function HeroSection() {
                     <Bell className="w-3.5 h-3.5" style={{ color: "oklch(0.62 0.22 355)" }} />
                     お知らせ
                   </h3>
-                  <a href="#" className="text-[10px] shrink-0" style={{ color: "oklch(0.62 0.22 355)" }}
-                    onClick={(e) => { e.preventDefault(); }}>
-                    もっと見る
-                  </a>
+                  <Link href="/features">
+                    <span className="text-[10px] shrink-0 cursor-pointer" style={{ color: "oklch(0.62 0.22 355)" }}>
+                      もっと見る
+                    </span>
+                  </Link>
                 </div>
                 <div className="divide-y divide-pink-50/80">
                   {notices.map((n) => (
-                    <div key={n.id} className="flex items-start gap-1.5 px-3 py-1.5">
-                      <span className="text-[10px] shrink-0 mt-0.5" style={{ color: "oklch(0.55 0.04 310)" }}>{n.date}</span>
-                      <span className="text-[10px] line-clamp-1" style={{ color: "oklch(0.25 0.03 310)" }}>{n.text}</span>
-                    </div>
+                    <Link key={n.id} href={n.href}>
+                      <a className="flex items-start gap-1.5 px-3 py-1.5 hover:bg-pink-50/40 transition-colors">
+                        <span className="text-[10px] shrink-0 mt-0.5" style={{ color: "oklch(0.55 0.04 310)" }}>{n.date}</span>
+                        <span className="text-[10px] line-clamp-1" style={{ color: "oklch(0.25 0.03 310)" }}>{n.text}</span>
+                      </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -169,12 +173,13 @@ export default function HeroSection() {
                   </p>
                 </div>
                 <button
-                  className="w-full py-1.5 rounded-lg text-[11px] font-bold text-white btn-press flex items-center justify-center gap-1.5"
+                  type="button"
+                  disabled
+                  className="w-full py-1.5 rounded-lg text-[11px] font-bold text-white opacity-60 cursor-not-allowed flex items-center justify-center gap-1.5"
                   style={{ background: "oklch(0.18 0.03 310)" }}
-                  onClick={() => toast("Xフォロー機能は準備中です")}
                 >
                   <Twitter className="w-3.5 h-3.5" />
-                  Xをフォロー
+                  Xをフォロー（準備中）
                 </button>
               </div>
             </div>

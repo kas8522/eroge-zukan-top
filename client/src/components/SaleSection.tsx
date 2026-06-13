@@ -5,7 +5,7 @@
 // ボタン文言: 「セールをチェック」
 import { saleItems, SaleItem } from "@/data/mockData";
 import SectionHeader from "./SectionHeader";
-import { toast } from "sonner";
+import { Link } from "wouter";
 
 function SaleCard({ item }: { item: SaleItem }) {
   return (
@@ -57,13 +57,12 @@ function SaleCard({ item }: { item: SaleItem }) {
         </p>
 
         {/* ボタン */}
-        <button
-          className="mt-auto w-full py-1.5 rounded-lg text-[10px] font-bold text-white btn-press transition-opacity hover:opacity-90"
-          style={{ background: "oklch(0.62 0.22 355)" }}
-          onClick={() => toast(`「${item.title}」のセールページは準備中です`)}
-        >
-          セールをチェック
-        </button>
+        <Link href={`/game/${item.id}`}>
+          <a className="mt-auto w-full py-1.5 rounded-lg text-[10px] font-bold text-white btn-press transition-opacity hover:opacity-90 block text-center"
+            style={{ background: "oklch(0.62 0.22 355)" }}>
+            詳細を見る
+          </a>
+        </Link>
       </div>
     </div>
   );
@@ -73,7 +72,7 @@ export default function SaleSection() {
   return (
     <section className="py-5 lg:py-6" style={{ background: "oklch(0.992 0.006 355)" }}>
       <div className="container">
-        <SectionHeader icon="🐱" title="今だけお得！セール中の注目作品" moreHref="#" />
+        <SectionHeader icon="🐱" title="今だけお得！セール中の注目作品" moreHref="/sale" />
 
         {/* ===== PC: グリッド ===== */}
         <div className="hidden lg:grid lg:grid-cols-5 xl:grid-cols-6 gap-3">

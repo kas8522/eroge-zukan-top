@@ -11,8 +11,8 @@ import Logo from "./Logo";
 const navItems = [
   { label: "ホーム", href: "/", icon: "👑" },
   { label: "人気ランキング", href: "/ranking", icon: "📊" },
-  { label: "急上昇", href: "#", icon: "📈" },
-  { label: "新作", href: "#", icon: "✨" },
+  { label: "急上昇", href: "/ranking", icon: "📈" },
+  { label: "新作", href: "/game/1", icon: "✨" },
   { label: "ジャンル", href: "/genres", icon: "🏷️" },
   { label: "セール", href: "/sale", icon: "🔥" },
   { label: "レビュー", href: "/reviews", icon: "💬" },
@@ -188,7 +188,10 @@ export default function Header() {
                 key={item.label}
                 className="flex items-center gap-2 px-3 py-2.5 text-sm rounded-xl hover:bg-pink-50 transition-colors text-left"
                 style={{ color: "oklch(0.35 0.03 310)" }}
-                onClick={() => { handlePlaceholder(item.label); setMobileMenuOpen(false); }}
+                onClick={() => {
+                  setLocation(item.href);
+                  setMobileMenuOpen(false);
+                }}
               >
                 <span>{item.icon}</span>
                 {item.label}

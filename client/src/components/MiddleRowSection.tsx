@@ -9,20 +9,21 @@
 //   - 下部CTA ボタン
 import { newReleases, saleItems, doujinGames, environmentItems, DoujinBadge } from "@/data/mockData";
 import { Heart } from "lucide-react";
-import { toast } from "sonner";
+import { Link } from "wouter";
 
 // ===== 共通: ミニセクションヘッダー =====
-function MiniHeader({ icon, title, onMore }: { icon: string; title: string; onMore: () => void }) {
+function MiniHeader({ icon, title, moreHref }: { icon: string; title: string; moreHref: string }) {
   return (
     <div className="flex items-center justify-between mb-3">
       <h2 className="flex items-center gap-1.5 text-sm font-bold" style={{ color: "oklch(0.18 0.03 310)" }}>
         <span>{icon}</span>
         {title}
       </h2>
-      <button className="text-xs font-medium hover:underline shrink-0" style={{ color: "oklch(0.62 0.22 355)" }}
-        onClick={onMore}>
-        見る →
-      </button>
+      <Link href={moreHref}>
+        <a className="text-xs font-medium hover:underline shrink-0" style={{ color: "oklch(0.62 0.22 355)" }}>
+          見る →
+        </a>
+      </Link>
     </div>
   );
 }
@@ -113,8 +114,8 @@ function DoujinMiniCard({ item }: { item: typeof doujinGames[0] }) {
 // ===== プレイ環境ミニカード =====
 function EnvMiniCard({ item }: { item: typeof environmentItems[0] }) {
   return (
-    <a href="#" className="flex gap-2.5 items-start hover:bg-pink-50/40 rounded-lg p-1.5 -mx-1.5 transition-colors"
-      onClick={(e) => { e.preventDefault(); toast(`「${item.title}」は準備中です`); }}>
+    <Link href="/environment">
+      <a className="flex gap-2.5 items-start hover:bg-pink-50/40 rounded-lg p-1.5 -mx-1.5 transition-colors">
       <div className="shrink-0 w-16 h-12 rounded-lg overflow-hidden bg-gray-50">
         <img src={item.thumbnail} alt={item.title} className="w-full h-full object-cover" loading="lazy" />
       </div>
@@ -124,20 +125,22 @@ function EnvMiniCard({ item }: { item: typeof environmentItems[0] }) {
         <p className="text-[10px] line-clamp-1" style={{ color: "oklch(0.55 0.04 310)" }}>{item.description}</p>
         <p className="text-xs font-extrabold mt-0.5" style={{ color: "oklch(0.18 0.03 310)" }}>{item.price}</p>
       </div>
-    </a>
+      </a>
+    </Link>
   );
 }
 
 // ===== CTAボタン =====
-function CTAButton({ label, onClick }: { label: string; onClick: () => void }) {
+function CTAButton({ label, href }: { label: string; href: string }) {
   return (
-    <button
-      className="mt-4 w-full py-2.5 rounded-xl text-xs font-bold text-white btn-press transition-opacity hover:opacity-90 flex items-center justify-center gap-1"
-      style={{ background: "oklch(0.62 0.22 355)" }}
-      onClick={onClick}
-    >
-      {label} ▶
-    </button>
+    <Link href={href}>
+      <a
+        className="mt-4 w-full py-2.5 rounded-xl text-xs font-bold text-white btn-press transition-opacity hover:opacity-90 flex items-center justify-center gap-1"
+        style={{ background: "oklch(0.62 0.22 355)" }}
+      >
+        {label} ▶
+      </a>
+    </Link>
   );
 }
 
@@ -153,49 +156,49 @@ export default function MiddleRowSection() {
           {/* 1: 注目の新作 */}
           <div className="bg-white rounded-2xl border p-4 pb-5 flex flex-col"
             style={{ borderColor: "oklch(0.92 0.02 355)" }}>
-            <MiniHeader icon="✨" title="注目の新作" onMore={() => toast("新作一覧は準備中です")} />
+            <MiniHeader icon="✨" title="注目の新作" moreHref="/ranking" />
             <div className="flex flex-col gap-1 flex-1">
               {newReleases.slice(0, 3).map((item) => (
                 <NewMiniCard key={item.id} item={item} />
               ))}
             </div>
-            <CTAButton label="新作をもっと見る" onClick={() => toast("新作一覧は準備中です")} />
+            <CTAButton label="新作をもっと見る" href="/ranking" />
           </div>
 
           {/* 2: セール中の注目作品 */}
           <div className="bg-white rounded-2xl border p-4 pb-5 flex flex-col"
             style={{ borderColor: "oklch(0.92 0.02 355)" }}>
-            <MiniHeader icon="🐱" title="セール中の注目作品" onMore={() => toast("セール一覧は準備中です")} />
+            <MiniHeader icon="🐱" title="セール中の注目作品" moreHref="/sale" />
             <div className="flex flex-col gap-1 flex-1">
               {saleItems.slice(0, 3).map((item) => (
                 <SaleMiniCard key={item.id} item={item} />
               ))}
             </div>
-            <CTAButton label="セールをチェック" onClick={() => toast("セール一覧は準備中です")} />
+            <CTAButton label="セールをチェック" href="/sale" />
           </div>
 
           {/* 3: 実は同人ゲームも熱い！ */}
           <div className="bg-white rounded-2xl border p-4 pb-5 flex flex-col"
             style={{ borderColor: "oklch(0.92 0.02 355)" }}>
-            <MiniHeader icon="💎" title="実は同人ゲームも熱い！" onMore={() => toast("同人ゲーム一覧は準備中です")} />
+            <MiniHeader icon="💎" title="実は同人ゲームも熱い！" moreHref="/doujin" />
             <div className="flex flex-col gap-1 flex-1">
               {doujinGames.slice(0, 3).map((item) => (
                 <DoujinMiniCard key={item.id} item={item} />
               ))}
             </div>
-            <CTAButton label="同人ゲームをもっと見る" onClick={() => toast("同人ゲーム一覧は準備中です")} />
+            <CTAButton label="同人ゲームをもっと見る" href="/doujin" />
           </div>
 
           {/* 4: 快適プレイ環境おすすめ */}
           <div className="bg-white rounded-2xl border p-4 pb-5 flex flex-col"
             style={{ borderColor: "oklch(0.92 0.02 355)" }}>
-            <MiniHeader icon="🎮" title="快適プレイ環境おすすめ" onMore={() => toast("プレイ環境一覧は準備中です")} />
+            <MiniHeader icon="🎮" title="快適プレイ環境おすすめ" moreHref="/environment" />
             <div className="flex flex-col gap-1 flex-1">
               {environmentItems.slice(0, 3).map((item) => (
                 <EnvMiniCard key={item.id} item={item} />
               ))}
             </div>
-            <CTAButton label="プレイ環境をもっと見る" onClick={() => toast("プレイ環境一覧は準備中です")} />
+            <CTAButton label="プレイ環境をもっと見る" href="/environment" />
           </div>
 
         </div>

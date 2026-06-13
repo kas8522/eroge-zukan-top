@@ -13,6 +13,7 @@ import Genres from "@/pages/Genres";
 import Environment from "@/pages/Environment";
 import Reviews from "@/pages/Reviews";
 import Features from "@/pages/Features";
+import FeatureArticle from "@/pages/FeatureArticle";
 import Doujin from "@/pages/Doujin";
 import Makers from "@/pages/Makers";
 import Search from "@/pages/Search";
@@ -33,6 +34,7 @@ function Router() {
       <Route path="/genres" component={Genres} />
       <Route path="/environment" component={Environment} />
       <Route path="/reviews" component={Reviews} />
+      <Route path="/features/:slug" component={FeatureArticle} />
       <Route path="/features" component={Features} />
       <Route path="/doujin" component={Doujin} />
       <Route path="/makers" component={Makers} />

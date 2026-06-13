@@ -68,7 +68,7 @@ export default function Contact() {
           ) : (
             <div className="rounded-lg border border-pink-200 bg-pink-50 p-4">
               <p className="text-sm text-gray-700">
-                お問い合わせフォームは準備中です。
+                お問い合わせフォームは現在準備中です。公開までしばらくお待ちください。
               </p>
             </div>
           )}
