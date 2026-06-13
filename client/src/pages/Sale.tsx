@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { Star, Heart, Eye, ChevronRight } from "lucide-react";
-import { saleItems } from "@/data/mockData";
+import { saleItemsWithFanza } from "@/lib/fanzaOverlay";
+import FanzaExternalLink from "@/components/FanzaExternalLink";
 import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 
 type SaleTab = "すべて" | "本日終了" | "30%以上OFF" | "50%以上OFF" | "人気順" | "同人ゲーム" | "Live2D";
@@ -28,18 +29,20 @@ function StarRating({ value }: { value: number }) {
 }
 
 // ===== セールカード =====
-function SaleCard({ item }: { item: typeof saleItems[0] }) {
+function SaleCard({ item }: { item: typeof saleItemsWithFanza[0] }) {
   return (
-    <Link href={`/game/${item.id}`}>
-      <a className="game-card bg-white rounded-xl border overflow-hidden hover:shadow-md transition-shadow group" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
+    <div className="game-card bg-white rounded-xl border overflow-hidden hover:shadow-md transition-shadow group" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
         {/* サムネイル + 割引バッジ */}
-        <div className="relative overflow-hidden bg-gray-100 aspect-[3/4]">
+        <Link href={`/game/${item.id}`}>
+          <a className="block relative overflow-hidden bg-gray-100 aspect-[3/4]">
           <img src={item.thumbnail} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform" onError={(e) => { e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Crect fill='%23f3e8f5' width='300' height='400'/%3E%3C/svg%3E"; }} />
-          {/* 割引率バッジ */}
+          {item.discountPercent > 0 && (
           <div className="absolute top-2 right-2 px-2 py-1 rounded-lg font-bold text-sm text-white" style={{ backgroundColor: "oklch(0.62 0.22 355)" }}>
             {item.discountPercent}% OFF
           </div>
-        </div>
+          )}
+          </a>
+        </Link>
 
         {/* 情報 */}
         <div className="p-3">
@@ -68,6 +71,7 @@ function SaleCard({ item }: { item: typeof saleItems[0] }) {
           </div>
 
           {/* 評価 */}
+          {item.rating > 0 && (
           <div className="flex items-center justify-between mb-2">
             <StarRating value={item.rating} />
             <div className="flex items-center gap-1 text-[10px]" style={{ color: "oklch(0.52 0.04 310)" }}>
@@ -75,20 +79,24 @@ function SaleCard({ item }: { item: typeof saleItems[0] }) {
               {item.likes}
             </div>
           </div>
+          )}
 
           {/* セール終了日 */}
           <div className="text-[10px] mb-2" style={{ color: "oklch(0.42 0.04 310)" }}>
             終了: {item.saleEndDate}
           </div>
 
-          {/* 詳細ボタン */}
-          <button className="w-full flex items-center justify-between pt-2 border-t hover:bg-pink-50 transition-colors py-2 px-0" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
-            <span className="text-xs font-semibold" style={{ color: "oklch(0.62 0.22 355)" }}>詳細を見る</span>
-            <ChevronRight className="w-4 h-4" style={{ color: "oklch(0.62 0.22 355)" }} />
-          </button>
+          <div className="flex flex-col gap-2 pt-2 border-t" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
+            <Link href={`/game/${item.id}`}>
+              <a className="w-full flex items-center justify-between hover:bg-pink-50 transition-colors py-1 px-0">
+                <span className="text-xs font-semibold" style={{ color: "oklch(0.62 0.22 355)" }}>詳細を見る</span>
+                <ChevronRight className="w-4 h-4" style={{ color: "oklch(0.62 0.22 355)" }} />
+              </a>
+            </Link>
+            <FanzaExternalLink href={item.affiliateUrl} compact />
+          </div>
         </div>
-      </a>
-    </Link>
+    </div>
   );
 }
 
@@ -143,7 +151,7 @@ export default function Sale() {
       {/* セール作品グリッド */}
       <div className="container py-8">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-          {saleItems.map((item) => (
+          {saleItemsWithFanza.map((item) => (
             <SaleCard key={item.id} item={item} />
           ))}
         </div>
@@ -191,7 +199,7 @@ export default function Sale() {
                 セール情報
               </h3>
               <div className="space-y-2 text-xs" style={{ color: "oklch(0.52 0.04 310)" }}>
-                <div>セール中の作品: {saleItems.length}件</div>
+                <div>セール中の作品: {saleItemsWithFanza.length}件</div>
                 <div>平均割引率: 56%</div>
                 <div>最大割引: 70% OFF</div>
               </div>

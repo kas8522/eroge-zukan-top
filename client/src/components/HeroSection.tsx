@@ -3,15 +3,16 @@
 // スマホ: ヒーロー → ランキング(コンパクト) → お知らせ+CTA+管理人(まとめカード)
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, Heart, Bell, Gamepad2, Twitter } from "lucide-react";
-import { heroSlides, rankingItems, notices, adminNote } from "@/data/mockData";
+import { heroSlidesWithFanza, rankingItemsFeaturedWithFanza } from "@/lib/fanzaOverlay";
+import { notices, adminNote } from "@/data/mockData";
 import { Link } from "wouter";
 
 export default function HeroSection() {
   const [current, setCurrent] = useState(0);
-  const slide = heroSlides[current];
+  const slide = heroSlidesWithFanza[current];
 
-  const prev = () => setCurrent((c) => (c - 1 + heroSlides.length) % heroSlides.length);
-  const next = () => setCurrent((c) => (c + 1) % heroSlides.length);
+  const prev = () => setCurrent((c) => (c - 1 + heroSlidesWithFanza.length) % heroSlidesWithFanza.length);
+  const next = () => setCurrent((c) => (c + 1) % heroSlidesWithFanza.length);
 
   return (
     <section className="py-3 lg:py-4" style={{ background: "oklch(0.992 0.006 355)" }}>
@@ -68,7 +69,7 @@ export default function HeroSection() {
 
             {/* ドット */}
             <div className="absolute bottom-3 right-4 flex gap-1.5 z-10">
-              {heroSlides.map((_, i) => (
+              {heroSlidesWithFanza.map((_, i) => (
                 <button key={i} onClick={() => setCurrent(i)}
                   className="rounded-full transition-all"
                   style={{
@@ -95,7 +96,7 @@ export default function HeroSection() {
               </Link>
             </div>
             <div className="divide-y divide-pink-50/80">
-              {rankingItems.map((item) => (
+              {rankingItemsFeaturedWithFanza.map((item) => (
                 <Link key={item.rank} href={`/game/${item.id}`}>
                   <a className="flex items-center gap-2 px-3 py-2 hover:bg-pink-50/40 transition-colors">
                   <span className="w-5 text-center font-extrabold text-sm shrink-0"

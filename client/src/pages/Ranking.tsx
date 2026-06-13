@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { Star, Heart, Eye, ChevronRight, Crown } from "lucide-react";
-import { rankingItems } from "@/data/mockData";
+import { rankingItemsWithFanza } from "@/lib/fanzaOverlay";
+import FanzaExternalLink from "@/components/FanzaExternalLink";
 import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 
 type RankingTab = "総合" | "急上昇" | "新作" | "セール中" | "同人ゲーム" | "Live2D";
@@ -36,8 +37,9 @@ function StarRating({ value }: { value: number }) {
 }
 
 // ===== ランキングカード（PC版・2位以降） =====
-function RankingCard({ item }: { item: typeof rankingItems[0] }) {
+function RankingCard({ item }: { item: typeof rankingItemsWithFanza[0] }) {
   return (
+    <div className="space-y-2">
     <Link href={`/game/${item.id}`}>
       <a className="game-card bg-white rounded-xl border overflow-hidden hover:shadow-md transition-shadow" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
         {/* PC版: 横並び */}
@@ -74,15 +76,19 @@ function RankingCard({ item }: { item: typeof rankingItems[0] }) {
             {/* 下部情報 */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <StarRating value={item.rating} />
+                {item.rating > 0 && <StarRating value={item.rating} />}
+                {item.likes > 0 && (
                 <div className="flex items-center gap-1 text-xs" style={{ color: "oklch(0.52 0.04 310)" }}>
                   <Heart className="w-3 h-3" fill="currentColor" />
                   {item.likes}
                 </div>
+                )}
+                {item.views > 0 && (
                 <div className="flex items-center gap-1 text-xs" style={{ color: "oklch(0.52 0.04 310)" }}>
                   <Eye className="w-3 h-3" />
                   {item.views}
                 </div>
+                )}
               </div>
               <div className="text-sm font-bold text-right whitespace-nowrap min-w-[68px] flex-shrink-0" style={{ color: "oklch(0.62 0.22 355)" }}>
                 {item.price}
@@ -114,10 +120,18 @@ function RankingCard({ item }: { item: typeof rankingItems[0] }) {
                 <p className="text-[10px] mb-1" style={{ color: "oklch(0.52 0.04 310)" }}>{item.maker}</p>
               </div>
               <div className="flex items-center gap-1 text-[10px]" style={{ color: "oklch(0.52 0.04 310)" }}>
+                {item.likes > 0 && (
+                <>
                 <Heart className="w-2.5 h-2.5" fill="currentColor" />
                 {item.likes}
+                </>
+                )}
+                {item.views > 0 && (
+                <>
                 <Eye className="w-2.5 h-2.5" />
                 {item.views}
+                </>
+                )}
               </div>
             </div>
           </div>
@@ -137,9 +151,11 @@ function RankingCard({ item }: { item: typeof rankingItems[0] }) {
           </p>
 
           {/* 星評価 */}
+          {item.rating > 0 && (
           <div className="flex items-center gap-2">
             <StarRating value={item.rating} />
           </div>
+          )}
 
           {/* 価格 */}
           <div className="text-base font-bold whitespace-nowrap" style={{ color: "oklch(0.62 0.22 355)" }}>
@@ -148,12 +164,15 @@ function RankingCard({ item }: { item: typeof rankingItems[0] }) {
         </div>
       </a>
     </Link>
+    <FanzaExternalLink href={item.affiliateUrl} compact />
+    </div>
   );
 }
 
 // ===== 1位カード（特別表示） =====
-function RankOneCard({ item }: { item: typeof rankingItems[0] }) {
+function RankOneCard({ item }: { item: typeof rankingItemsWithFanza[0] }) {
   return (
+    <div className="space-y-2">
     <Link href={`/game/${item.id}`}>
       <a className="game-card bg-white rounded-xl border overflow-hidden hover:shadow-lg transition-shadow relative" style={{ borderColor: "oklch(0.92 0.02 355)" }}>
         {/* PC版：王冠バッジ */}
@@ -187,18 +206,28 @@ function RankOneCard({ item }: { item: typeof rankingItems[0] }) {
           </p>
 
           <div className="flex items-center justify-between mb-2">
-            <StarRating value={item.rating} />
+            {item.rating > 0 && <StarRating value={item.rating} />}
             <div className="text-sm font-bold whitespace-nowrap min-w-[68px] text-right flex-shrink-0" style={{ color: "oklch(0.62 0.22 355)" }}>
               {item.price}
             </div>
           </div>
 
+          {(item.likes > 0 || item.views > 0) && (
           <div className="flex items-center gap-2 text-xs mb-3" style={{ color: "oklch(0.52 0.04 310)" }}>
+            {item.likes > 0 && (
+            <>
             <Heart className="w-3 h-3" fill="currentColor" />
             {item.likes}
+            </>
+            )}
+            {item.views > 0 && (
+            <>
             <Eye className="w-3 h-3" />
             {item.views}
+            </>
+            )}
           </div>
+          )}
 
           {/* 詳細ボタン */}
           <div className="flex items-center justify-between">
@@ -208,6 +237,8 @@ function RankOneCard({ item }: { item: typeof rankingItems[0] }) {
         </div>
       </a>
     </Link>
+    <FanzaExternalLink href={item.affiliateUrl} />
+    </div>
   );
 }
 
@@ -236,8 +267,8 @@ export default function Ranking() {
   const [activeTab, setActiveTab] = useState<RankingTab>("総合");
 
   const tabs: RankingTab[] = ["総合", "急上昇", "新作", "セール中", "同人ゲーム", "Live2D"];
-  const firstItem = rankingItems[0];
-  const restItems = rankingItems.slice(1);
+  const firstItem = rankingItemsWithFanza[0];
+  const restItems = rankingItemsWithFanza.slice(1);
 
   return (
     <div className="min-h-screen bg-white">
@@ -294,7 +325,7 @@ export default function Ranking() {
 
             {/* 2位以降 */}
             {restItems.map((item) => (
-              <RankingCard key={item.rank} item={item} />
+              <RankingCard key={item.id} item={item} />
             ))}
           </div>
 

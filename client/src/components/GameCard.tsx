@@ -2,10 +2,12 @@
 // デザイン: サムネイル主役(4:3固定)、ラベル、タグ、短い説明、詳細ボタン
 // スマホ2列でも崩れないよう: タイトル2行省略、ボタンmt-auto、h-full
 import { GameCard as GameCardType } from "@/data/mockData";
+import type { WithAffiliateUrl } from "@/lib/fanzaOverlay";
+import FanzaExternalLink from "@/components/FanzaExternalLink";
 import { Link } from "wouter";
 
 interface GameCardProps {
-  item: GameCardType;
+  item: WithAffiliateUrl<GameCardType> | GameCardType;
 }
 
 const labelColors: Record<string, string> = {
@@ -66,14 +68,19 @@ export default function GameCard({ item }: GameCardProps) {
         </p>
 
         {/* ボタン: 常に下端に揃える */}
-        <Link href={`/game/${item.id}`}>
-          <button
-            className="mt-auto w-full py-1.5 rounded-lg text-[10px] sm:text-xs font-semibold border transition-colors hover:bg-pink-50 btn-press"
-            style={{ borderColor: "oklch(0.62 0.22 355)", color: "oklch(0.62 0.22 355)" }}
-          >
-            詳細を見る
-          </button>
-        </Link>
+        <div className="mt-auto flex flex-col gap-1.5">
+          <Link href={`/game/${item.id}`}>
+            <button
+              className="w-full py-1.5 rounded-lg text-[10px] sm:text-xs font-semibold border transition-colors hover:bg-pink-50 btn-press"
+              style={{ borderColor: "oklch(0.62 0.22 355)", color: "oklch(0.62 0.22 355)" }}
+            >
+              詳細を見る
+            </button>
+          </Link>
+          {"affiliateUrl" in item && item.affiliateUrl && (
+            <FanzaExternalLink href={item.affiliateUrl} />
+          )}
+        </div>
       </div>
     </div>
   );

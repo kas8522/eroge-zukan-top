@@ -208,9 +208,10 @@ function buildItemListUrl(apiId, affiliateId) {
   url.searchParams.set("api_id", apiId);
   url.searchParams.set("affiliate_id", affiliateId);
   url.searchParams.set("site", "FANZA");
-  url.searchParams.set("service", "digital");
+  url.searchParams.set("service", "pcgame");
+  url.searchParams.set("floor", "digital_pcgame");
   url.searchParams.set("output", "json");
-  url.searchParams.set("hits", "20");
+  url.searchParams.set("hits", "100");
   url.searchParams.set("sort", "date");
   return url;
 }

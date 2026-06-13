@@ -3,11 +3,13 @@
 // スマホ: 横スクロール、カード幅74vw、右端に余白あり
 // 価格: 通常価格取り消し線(薄) + セール価格ピンク大 + 割引バッジ目立たせ
 // ボタン文言: 「セールをチェック」
-import { saleItems, SaleItem } from "@/data/mockData";
+import { saleItemsFeaturedWithFanza, type WithAffiliateUrl } from "@/lib/fanzaOverlay";
+import type { SaleItem } from "@/data/mockData";
+import FanzaExternalLink from "@/components/FanzaExternalLink";
 import SectionHeader from "./SectionHeader";
 import { Link } from "wouter";
 
-function SaleCard({ item }: { item: SaleItem }) {
+function SaleCard({ item }: { item: WithAffiliateUrl<SaleItem> }) {
   return (
     <div
       className="game-card bg-white rounded-xl border overflow-hidden flex flex-col h-full"
@@ -22,6 +24,7 @@ function SaleCard({ item }: { item: SaleItem }) {
           loading="lazy"
         />
         {/* 割引バッジ */}
+        {item.discountPercent > 0 && (
         <div className="absolute top-1.5 left-1.5 flex flex-col items-center justify-center rounded-lg text-white font-extrabold leading-tight"
           style={{
             background: "oklch(0.58 0.22 25)",
@@ -32,6 +35,7 @@ function SaleCard({ item }: { item: SaleItem }) {
           <span>{item.discountPercent}%</span>
           <span style={{ fontSize: "8px" }}>OFF</span>
         </div>
+        )}
       </div>
 
       {/* 情報 */}
@@ -57,12 +61,15 @@ function SaleCard({ item }: { item: SaleItem }) {
         </p>
 
         {/* ボタン */}
-        <Link href={`/game/${item.id}`}>
-          <a className="mt-auto w-full py-1.5 rounded-lg text-[10px] font-bold text-white btn-press transition-opacity hover:opacity-90 block text-center"
-            style={{ background: "oklch(0.62 0.22 355)" }}>
-            詳細を見る
-          </a>
-        </Link>
+        <div className="mt-auto flex flex-col gap-1.5">
+          <Link href={`/game/${item.id}`}>
+            <a className="w-full py-1.5 rounded-lg text-[10px] font-bold text-white btn-press transition-opacity hover:opacity-90 block text-center"
+              style={{ background: "oklch(0.62 0.22 355)" }}>
+              詳細を見る
+            </a>
+          </Link>
+          <FanzaExternalLink href={item.affiliateUrl} compact />
+        </div>
       </div>
     </div>
   );
@@ -76,7 +83,7 @@ export default function SaleSection() {
 
         {/* ===== PC: グリッド ===== */}
         <div className="hidden lg:grid lg:grid-cols-5 xl:grid-cols-6 gap-3">
-          {saleItems.map((item) => (
+          {saleItemsFeaturedWithFanza.map((item) => (
             <SaleCard key={item.id} item={item} />
           ))}
         </div>
@@ -84,7 +91,7 @@ export default function SaleSection() {
         {/* ===== スマホ: 横スクロール ===== */}
         <div className="lg:hidden">
           <div className="scroll-x flex gap-3 pb-2" style={{ paddingRight: "1.5rem" }}>
-            {saleItems.map((item) => (
+            {saleItemsFeaturedWithFanza.map((item) => (
               <div key={item.id} className="shrink-0" style={{ width: "74vw", maxWidth: "240px" }}>
                 <SaleCard item={item} />
               </div>

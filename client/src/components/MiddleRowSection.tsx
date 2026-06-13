@@ -7,7 +7,8 @@
 //   - セクションヘッダー（アイコン + タイトル + 「見る→」）
 //   - サムネイルカードを縦に3件
 //   - 下部CTA ボタン
-import { newReleases, saleItems, doujinGames, environmentItems, DoujinBadge } from "@/data/mockData";
+import { newReleasesWithFanza, saleItemsFeaturedWithFanza } from "@/lib/fanzaOverlay";
+import { doujinGames, environmentItems, DoujinBadge } from "@/data/mockData";
 import { Heart } from "lucide-react";
 import { Link } from "wouter";
 
@@ -29,7 +30,7 @@ function MiniHeader({ icon, title, moreHref }: { icon: string; title: string; mo
 }
 
 // ===== 新作ミニカード =====
-function NewMiniCard({ item }: { item: typeof newReleases[0] }) {
+function NewMiniCard({ item }: { item: typeof newReleasesWithFanza[0] }) {
   const labelColors: Record<string, string> = {
     today: "badge-pink", pickup: "badge-orange", live2d: "badge-blue",
     special: "badge-green", new: "badge-pink",
@@ -59,7 +60,7 @@ function NewMiniCard({ item }: { item: typeof newReleases[0] }) {
 }
 
 // ===== セールミニカード =====
-function SaleMiniCard({ item }: { item: typeof saleItems[0] }) {
+function SaleMiniCard({ item }: { item: typeof saleItemsFeaturedWithFanza[0] }) {
   return (
     <a href={`/game/${item.id}`} className="flex gap-2.5 items-start hover:bg-pink-50/40 rounded-lg p-1.5 -mx-1.5 transition-colors">
       <div className="relative shrink-0 w-16 h-12 rounded-lg overflow-hidden">
@@ -158,7 +159,7 @@ export default function MiddleRowSection() {
             style={{ borderColor: "oklch(0.92 0.02 355)" }}>
             <MiniHeader icon="✨" title="注目の新作" moreHref="/ranking" />
             <div className="flex flex-col gap-1 flex-1">
-              {newReleases.slice(0, 3).map((item) => (
+              {newReleasesWithFanza.slice(0, 3).map((item) => (
                 <NewMiniCard key={item.id} item={item} />
               ))}
             </div>
@@ -170,7 +171,7 @@ export default function MiddleRowSection() {
             style={{ borderColor: "oklch(0.92 0.02 355)" }}>
             <MiniHeader icon="🐱" title="セール中の注目作品" moreHref="/sale" />
             <div className="flex flex-col gap-1 flex-1">
-              {saleItems.slice(0, 3).map((item) => (
+              {saleItemsFeaturedWithFanza.slice(0, 3).map((item) => (
                 <SaleMiniCard key={item.id} item={item} />
               ))}
             </div>
